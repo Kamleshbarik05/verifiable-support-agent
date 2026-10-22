@@ -1,0 +1,41 @@
+[
+  {
+    "model_name": "Baseline 1 (Trivial)",
+    "elapsed_seconds": 0.01,
+    "intent_accuracy": 0.2,
+    "intent_macro_f1": 0.0476,
+    "escalation_precision": 0.0,
+    "escalation_recall": 0.0,
+    "escalation_fnr": 1.0,
+    "mean_groundedness": 4.0,
+    "mean_actionability": 5.0,
+    "mean_brand_tone": 4.0,
+    "safety_pass_rate": 100.0
+  },
+  {
+    "model_name": "Baseline 2 (Simple)",
+    "elapsed_seconds": 0.01,
+    "intent_accuracy": 0.505,
+    "intent_macro_f1": 0.4222,
+    "escalation_precision": 0.5,
+    "escalation_recall": 0.125,
+    "escalation_fnr": 0.875,
+    "mean_groundedness": 3.9,
+    "mean_actionability": 4.7,
+    "mean_brand_tone": 3.9,
+    "safety_pass_rate": 100.0
+  },
+  {
+    "model_name": "Headline Pipeline",
+    "elapsed_seconds": 0.79,
+    "intent_accuracy": 0.875,
+    "intent_macro_f1": 0.8734,
+    "escalation_precision": 0.2303,
+    "escalation_recall": 0.875,
+    "escalation_fnr": 0.125,
+    "mean_groundedness": 3.83,
+    "mean_actionability": 4.47,
+    "mean_brand_tone": 3.83,
+    "safety_pass_rate": 100.0
+  }
+]

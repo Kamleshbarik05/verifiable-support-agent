@@ -1,0 +1,16 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment & API keys
+.env
+.venv/
+env/
+venv/
+
+# Local cache & temporary files
+data/.llm_cache.json
+.DS_Store
+Thumbs.db
