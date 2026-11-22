@@ -1,0 +1,30 @@
+{
+  "benchmark": "retrieval_ab_comparison",
+  "git_commit": "8668995ea0bfdead34b869b35ba58ccb3bfd19ac",
+  "timestamp": "2026-11-22T19:18:52.270028+00:00",
+  "sample_size": 100,
+  "embedder_model": "local-fallback-deterministic-768",
+  "v1_retrieval": {
+    "recall_at_1": 0.11,
+    "recall_at_3": 0.35,
+    "recall_at_5": 0.5,
+    "mrr": 0.2478,
+    "latency_p50_ms": 3.75,
+    "latency_p95_ms": 6.56
+  },
+  "v2_vector_retrieval": {
+    "recall_at_1": 0.71,
+    "recall_at_3": 0.86,
+    "recall_at_5": 0.88,
+    "mrr": 0.7833,
+    "latency_p50_ms": 1.65,
+    "latency_p95_ms": 2.79
+  },
+  "delta": {
+    "recall_at_1_diff": 0.6,
+    "recall_at_3_diff": 0.51,
+    "recall_at_5_diff": 0.38,
+    "mrr_diff": 0.5355,
+    "p50_latency_diff_ms": -2.1
+  }
+}

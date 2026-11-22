@@ -10,7 +10,12 @@ __pycache__/
 env/
 venv/
 
-# Local cache & temporary files
+# Local cache & temporary test files
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 data/.llm_cache.json
+app/v1/data/.llm_cache.json
 .DS_Store
 Thumbs.db

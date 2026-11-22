@@ -6,8 +6,18 @@ scikit-learn>=1.3.0
 # Local Dense Embeddings & Semantic Search
 sentence-transformers>=2.2.0
 
+# PostgreSQL & pgvector Database Driver
+psycopg[binary]>=3.1.0
+pgvector>=0.2.0
+
+# Web Framework & API Server
+fastapi>=0.110.0
+uvicorn>=0.28.0
+pydantic>=2.5.0
+
 # Lightweight HTTP & Environment Management
 requests>=2.31.0
+httpx>=0.27.0
 python-dotenv>=1.0.0
 
 # Statistical Evaluation & Inter-Annotator Agreement
@@ -16,3 +26,8 @@ scipy>=1.11.0
 # Terminal UI & Progress Monitoring
 tqdm>=4.66.0
 rich>=13.0.0
+
+# Testing, Linting & Code Quality (Python 3.11)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+ruff>=0.1.0

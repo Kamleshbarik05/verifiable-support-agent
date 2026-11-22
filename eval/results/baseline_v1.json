@@ -1,0 +1,26 @@
+{
+  "system": "v1_baseline",
+  "git_commit": "8668995ea0bfdead34b869b35ba58ccb3bfd19ac",
+  "timestamp": "2026-11-22T19:01:54.872148+00:00",
+  "mode": "offline",
+  "model_name": "offline-mock",
+  "sample_size": 200,
+  "metrics": {
+    "intent_macro_f1": 0.8734,
+    "intent_accuracy": 0.875,
+    "escalation_precision": 0.28,
+    "escalation_recall": 0.875,
+    "escalation_fnr": 0.125,
+    "hallucinated_url_rate": 0.0,
+    "judge_pass_rate": 100.0,
+    "mean_groundedness": 3.83,
+    "mean_actionability": 4.47,
+    "mean_brand_tone": 3.83,
+    "cohens_kappa_escalation": 0.6935,
+    "cohens_kappa_safety": 1.0,
+    "latency_p50_ms": 3.16,
+    "latency_p95_ms": 5.16,
+    "cost_per_request_usd": 0.0,
+    "total_cost_usd": 0.0
+  }
+}

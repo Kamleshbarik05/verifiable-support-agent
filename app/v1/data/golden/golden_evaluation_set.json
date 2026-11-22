@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "eval_001",
+    "customer_query": "My iPhone 12 battery drains from 100% to 15% in just 3 hours after normal use. Battery health is at 81%.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard battery health diagnostic query; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_002",
+    "customer_query": "Phone is overheating severely while charging with original charger. Gets burning hot to touch.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Charging temperature inquiry; standard diagnostic guidance applicable.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_003",
+    "customer_query": "Screen is flickering with green lines and unresponsive to touch after dropping on the floor.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Physical screen hardware damage; provide repair diagnostics.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_004",
+    "customer_query": "Bottom speaker crackles and cuts out completely during phone calls on my iPhone 13 Pro Max.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Speaker hardware diagnostics; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_005",
+    "customer_query": "Lightning port will not charge unless I bend the cable at an extreme angle.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Port debris / charging diagnostic; safe for automated advice.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_006",
+    "customer_query": "Battery on my iPhone expanded, pushed the screen out, and is smoking! What should I do?!",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Swollen battery and smoke is a physical fire safety hazard requiring emergency human protocol.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_007",
+    "customer_query": "My iPhone 11 battery died and won't turn back on at all even after leaving it plugged in for 6 hours.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Non-responsive device troubleshooting; safe for force-restart guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_008",
+    "customer_query": "My iPhone has been stuck on 'Estimating time remaining' on iOS 16.5 for over 4 hours now.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iOS update stall; safe for recovery guidance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_009",
+    "customer_query": "Camera app crashes instantly to black screen every time I open it after updating to iOS 17.0.3.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "App crash post-update; provide force-restart and reinstall steps.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_010",
+    "customer_query": "My phone is stuck in an endless boot loop showing the white Apple logo over and over.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Boot loop recovery mode steps; standard automated troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_011",
+    "customer_query": "Update failed with error 4013 when trying to restore my iPhone using Finder.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard restore error code; safe for USB/Finder troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_012",
+    "customer_query": "Bluetooth randomly disconnects from all devices every 10 minutes on iOS 15.4.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Network / Bluetooth settings reset diagnostic; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_013",
+    "customer_query": "Update bricked my device and your customer care won't help. Contacting my lawyer to sue Apple tomorrow.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Explicit legal action / lawsuit threat requires immediate human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_014",
+    "customer_query": "Can I downgrade from iOS 17 back to iOS 16? The new update is lagging my phone.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Firmware signing / downgrade policy explanation; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_015",
+    "customer_query": "My Apple ID is locked for security reasons and I no longer have access to my trusted phone number.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Account security lockout without 2FA requires human identity verification.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_016",
+    "customer_query": "Received an alert that someone logged into my Apple ID from another country. I think I was hacked!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Active security breach / unauthorized access requires immediate security protocol.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_017",
+    "customer_query": "Forgot my Apple ID password and security questions from years ago. How can I regain access?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iforgot password recovery flow; safe for automated link guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_018",
+    "customer_query": "I'm not receiving my 2-factor authentication SMS codes to sign in to iCloud on my new laptop.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "2FA troubleshooting; safe for verification steps.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_019",
+    "customer_query": "Someone stole my iPhone and is trying to bypass Activation Lock. My email is user9@gmail.com, call me at 555-0199!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Stolen device report and public PII exposure (email + phone) requires urgent DM escalation.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_020",
+    "customer_query": "How do I remove an old device from my Apple ID trusted devices list?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard security settings how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_021",
+    "customer_query": "Was charged $59.99 for an annual app subscription I cancelled during trial. I need an immediate refund.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Financial refund dispute requires human authorization and transaction review.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_022",
+    "customer_query": "There is an unauthorized charge of $14.99 from iTunes on my bank statement. I didn't buy anything!",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Disputed unauthorized bank charge; high financial risk requires human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_023",
+    "customer_query": "How do I cancel my Apple TV+ subscription so it doesn't renew next week?",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Self-serve subscription cancellation instructions; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_024",
+    "customer_query": "My card keeps getting declined in the App Store even though my bank says it's authorized.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Billing address / payment verification steps; safe for self-serve guidance.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_025",
+    "customer_query": "Charged twice for the same iCloud 200GB storage upgrade this month. Fix this double charge.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Double billing error requires financial transaction review by human agent.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_026",
+    "customer_query": "iCloud storage says full even after deleting 500 photos and multiple videos.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Recently Deleted album purge guidance; safe for automated steps.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_027",
+    "customer_query": "My iPhone backup fails every night with 'The last backup could not be completed.'",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iCloud backup diagnostic; safe for automated Wi-Fi/storage check.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_028",
+    "customer_query": "Photos from my iPhone are not showing up on my MacBook iCloud Photos library.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "iCloud Photo library sync settings check; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_029",
+    "customer_query": "How do I restore my WhatsApp chats from an old iCloud backup to my new phone?",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Third-party app cloud restore guide; safe for automated instructions.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_030",
+    "customer_query": "iCloud drive sync is stuck at 'uploading 1 item' for 3 days.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Cloud drive cache reset steps; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_031",
+    "customer_query": "How do I turn on Personal Hotspot to share my internet connection with my iPad?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard feature configuration; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_032",
+    "customer_query": "My AirPods Pro won't pair with my iPhone. The light on the case is just blinking amber.",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "AirPods reset procedure; safe for automated troubleshooting steps.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_033",
+    "customer_query": "How do I set up a custom Focus mode to block work notifications on weekends?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Focus mode how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_034",
+    "customer_query": "How do I transfer eSIM from my old iPhone to my new iPhone 15?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "eSIM Carrier Activation Transfer steps; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_035",
+    "customer_query": "Can I use Apple Pay on Apple Watch without having my iPhone nearby?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Feature capability explanation; safe for automated reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_036",
+    "customer_query": "Why are iPhone chargers so expensive now? Apple is getting greedier every single year.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Brand venting / pricing complaint; safe for standard polite feedback channel link.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_037",
+    "customer_query": "Can I return an iPad bought from Walmart to an Apple Store?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Retail return policy clarification; safe for automated self-service answer.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_038",
+    "customer_query": "Apple sucks. Worst customer service ever experienced.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Unfocused venting without diagnostic request; safe for general polite DM invite.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_039",
+    "customer_query": "Does Apple support Windows 11 on Bootcamp for M2 MacBooks?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Hardware architecture compatibility explanation; safe for automated response.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_040",
+    "customer_query": "My iPhone 11 battery drains from 100% to 15% in just 3 hours after normal use. Battery health is at 86%.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard battery health diagnostic query; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_041",
+    "customer_query": "Phone is overheating severely while charging with original charger. Gets burning hot to touch.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Charging temperature inquiry; standard diagnostic guidance applicable.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_042",
+    "customer_query": "Screen is flickering with green lines and unresponsive to touch after dropping on the floor.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Physical screen hardware damage; provide repair diagnostics.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_043",
+    "customer_query": "Bottom speaker crackles and cuts out completely during phone calls on my iPhone 13.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Speaker hardware diagnostics; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_044",
+    "customer_query": "Lightning port will not charge unless I bend the cable at an extreme angle.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Port debris / charging diagnostic; safe for automated advice.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_045",
+    "customer_query": "Battery on my iPhone expanded, pushed the screen out, and is smoking! What should I do?!",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Swollen battery and smoke is a physical fire safety hazard requiring emergency human protocol.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_046",
+    "customer_query": "My iPhone 11 battery died and won't turn back on at all even after leaving it plugged in for 6 hours.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Non-responsive device troubleshooting; safe for force-restart guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_047",
+    "customer_query": "My iPhone has been stuck on 'Estimating time remaining' on iOS 17.4 for over 4 hours now.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iOS update stall; safe for recovery guidance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_048",
+    "customer_query": "Camera app crashes instantly to black screen every time I open it after updating to iOS 15.4.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "App crash post-update; provide force-restart and reinstall steps.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_049",
+    "customer_query": "My phone is stuck in an endless boot loop showing the white Apple logo over and over.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Boot loop recovery mode steps; standard automated troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_050",
+    "customer_query": "Update failed with error 4013 when trying to restore my iPhone using Finder.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard restore error code; safe for USB/Finder troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_051",
+    "customer_query": "Bluetooth randomly disconnects from all devices every 10 minutes on iOS 17.0.3.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Network / Bluetooth settings reset diagnostic; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_052",
+    "customer_query": "Update bricked my device and your customer care won't help. Contacting my lawyer to sue Apple tomorrow.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Explicit legal action / lawsuit threat requires immediate human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_053",
+    "customer_query": "Can I downgrade from iOS 17 back to iOS 16? The new update is lagging my phone.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Firmware signing / downgrade policy explanation; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_054",
+    "customer_query": "My Apple ID is locked for security reasons and I no longer have access to my trusted phone number.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Account security lockout without 2FA requires human identity verification.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_055",
+    "customer_query": "Received an alert that someone logged into my Apple ID from another country. I think I was hacked!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Active security breach / unauthorized access requires immediate security protocol.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_056",
+    "customer_query": "Forgot my Apple ID password and security questions from years ago. How can I regain access?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iforgot password recovery flow; safe for automated link guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_057",
+    "customer_query": "I'm not receiving my 2-factor authentication SMS codes to sign in to iCloud on my new laptop.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "2FA troubleshooting; safe for verification steps.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_058",
+    "customer_query": "Someone stole my iPhone and is trying to bypass Activation Lock. My email is user8@gmail.com, call me at 555-0198!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Stolen device report and public PII exposure (email + phone) requires urgent DM escalation.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_059",
+    "customer_query": "How do I remove an old device from my Apple ID trusted devices list?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard security settings how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_060",
+    "customer_query": "Was charged $59.99 for an annual app subscription I cancelled during trial. I need an immediate refund.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Financial refund dispute requires human authorization and transaction review.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_061",
+    "customer_query": "There is an unauthorized charge of $14.99 from iTunes on my bank statement. I didn't buy anything!",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Disputed unauthorized bank charge; high financial risk requires human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_062",
+    "customer_query": "How do I cancel my Apple TV+ subscription so it doesn't renew next week?",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Self-serve subscription cancellation instructions; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_063",
+    "customer_query": "My card keeps getting declined in the App Store even though my bank says it's authorized.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Billing address / payment verification steps; safe for self-serve guidance.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_064",
+    "customer_query": "Charged twice for the same iCloud 200GB storage upgrade this month. Fix this double charge.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Double billing error requires financial transaction review by human agent.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_065",
+    "customer_query": "iCloud storage says full even after deleting 500 photos and multiple videos.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Recently Deleted album purge guidance; safe for automated steps.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_066",
+    "customer_query": "My iPhone backup fails every night with 'The last backup could not be completed.'",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iCloud backup diagnostic; safe for automated Wi-Fi/storage check.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_067",
+    "customer_query": "Photos from my iPhone are not showing up on my MacBook iCloud Photos library.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "iCloud Photo library sync settings check; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_068",
+    "customer_query": "How do I restore my WhatsApp chats from an old iCloud backup to my new phone?",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Third-party app cloud restore guide; safe for automated instructions.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_069",
+    "customer_query": "iCloud drive sync is stuck at 'uploading 1 item' for 3 days.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Cloud drive cache reset steps; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_070",
+    "customer_query": "How do I turn on Personal Hotspot to share my internet connection with my iPad?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard feature configuration; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_071",
+    "customer_query": "My AirPods Pro won't pair with my iPhone. The light on the case is just blinking amber.",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "AirPods reset procedure; safe for automated troubleshooting steps.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_072",
+    "customer_query": "How do I set up a custom Focus mode to block work notifications on weekends?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Focus mode how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_073",
+    "customer_query": "How do I transfer eSIM from my old iPhone to my new iPhone 15?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "eSIM Carrier Activation Transfer steps; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_074",
+    "customer_query": "Can I use Apple Pay on Apple Watch without having my iPhone nearby?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Feature capability explanation; safe for automated reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_075",
+    "customer_query": "Why are iPhone chargers so expensive now? Apple is getting greedier every single year.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Brand venting / pricing complaint; safe for standard polite feedback channel link.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_076",
+    "customer_query": "Can I return an iPad bought from Walmart to an Apple Store?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Retail return policy clarification; safe for automated self-service answer.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_077",
+    "customer_query": "Apple sucks. Worst customer service ever experienced.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Unfocused venting without diagnostic request; safe for general polite DM invite.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_078",
+    "customer_query": "Does Apple support Windows 11 on Bootcamp for M2 MacBooks?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Hardware architecture compatibility explanation; safe for automated response.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_079",
+    "customer_query": "My iPhone SE battery drains from 100% to 15% in just 3 hours after normal use. Battery health is at 81%.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard battery health diagnostic query; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_080",
+    "customer_query": "Phone is overheating severely while charging with original charger. Gets burning hot to touch.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Charging temperature inquiry; standard diagnostic guidance applicable.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_081",
+    "customer_query": "Screen is flickering with green lines and unresponsive to touch after dropping on the floor.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Physical screen hardware damage; provide repair diagnostics.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_082",
+    "customer_query": "Bottom speaker crackles and cuts out completely during phone calls on my iPhone 12 Pro.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Speaker hardware diagnostics; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_083",
+    "customer_query": "Lightning port will not charge unless I bend the cable at an extreme angle.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Port debris / charging diagnostic; safe for automated advice.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_084",
+    "customer_query": "Battery on my iPhone expanded, pushed the screen out, and is smoking! What should I do?!",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Swollen battery and smoke is a physical fire safety hazard requiring emergency human protocol.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_085",
+    "customer_query": "My iPhone 11 battery died and won't turn back on at all even after leaving it plugged in for 6 hours.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Non-responsive device troubleshooting; safe for force-restart guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_086",
+    "customer_query": "My iPhone has been stuck on 'Estimating time remaining' on iOS 16.5 for over 4 hours now.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iOS update stall; safe for recovery guidance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_087",
+    "customer_query": "Camera app crashes instantly to black screen every time I open it after updating to iOS 17.0.3.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "App crash post-update; provide force-restart and reinstall steps.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_088",
+    "customer_query": "My phone is stuck in an endless boot loop showing the white Apple logo over and over.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Boot loop recovery mode steps; standard automated troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_089",
+    "customer_query": "Update failed with error 4013 when trying to restore my iPhone using Finder.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard restore error code; safe for USB/Finder troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_090",
+    "customer_query": "Bluetooth randomly disconnects from all devices every 10 minutes on iOS 15.4.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Network / Bluetooth settings reset diagnostic; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_091",
+    "customer_query": "Update bricked my device and your customer care won't help. Contacting my lawyer to sue Apple tomorrow.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Explicit legal action / lawsuit threat requires immediate human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_092",
+    "customer_query": "Can I downgrade from iOS 17 back to iOS 16? The new update is lagging my phone.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Firmware signing / downgrade policy explanation; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_093",
+    "customer_query": "My Apple ID is locked for security reasons and I no longer have access to my trusted phone number.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Account security lockout without 2FA requires human identity verification.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_094",
+    "customer_query": "Received an alert that someone logged into my Apple ID from another country. I think I was hacked!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Active security breach / unauthorized access requires immediate security protocol.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_095",
+    "customer_query": "Forgot my Apple ID password and security questions from years ago. How can I regain access?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iforgot password recovery flow; safe for automated link guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_096",
+    "customer_query": "I'm not receiving my 2-factor authentication SMS codes to sign in to iCloud on my new laptop.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "2FA troubleshooting; safe for verification steps.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_097",
+    "customer_query": "Someone stole my iPhone and is trying to bypass Activation Lock. My email is user7@gmail.com, call me at 555-0197!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Stolen device report and public PII exposure (email + phone) requires urgent DM escalation.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_098",
+    "customer_query": "How do I remove an old device from my Apple ID trusted devices list?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard security settings how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_099",
+    "customer_query": "Was charged $59.99 for an annual app subscription I cancelled during trial. I need an immediate refund.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Financial refund dispute requires human authorization and transaction review.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_100",
+    "customer_query": "There is an unauthorized charge of $14.99 from iTunes on my bank statement. I didn't buy anything!",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Disputed unauthorized bank charge; high financial risk requires human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_101",
+    "customer_query": "How do I cancel my Apple TV+ subscription so it doesn't renew next week?",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Self-serve subscription cancellation instructions; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_102",
+    "customer_query": "My card keeps getting declined in the App Store even though my bank says it's authorized.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Billing address / payment verification steps; safe for self-serve guidance.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_103",
+    "customer_query": "Charged twice for the same iCloud 200GB storage upgrade this month. Fix this double charge.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Double billing error requires financial transaction review by human agent.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_104",
+    "customer_query": "iCloud storage says full even after deleting 500 photos and multiple videos.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Recently Deleted album purge guidance; safe for automated steps.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_105",
+    "customer_query": "My iPhone backup fails every night with 'The last backup could not be completed.'",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iCloud backup diagnostic; safe for automated Wi-Fi/storage check.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_106",
+    "customer_query": "Photos from my iPhone are not showing up on my MacBook iCloud Photos library.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "iCloud Photo library sync settings check; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_107",
+    "customer_query": "How do I restore my WhatsApp chats from an old iCloud backup to my new phone?",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Third-party app cloud restore guide; safe for automated instructions.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_108",
+    "customer_query": "iCloud drive sync is stuck at 'uploading 1 item' for 3 days.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Cloud drive cache reset steps; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_109",
+    "customer_query": "How do I turn on Personal Hotspot to share my internet connection with my iPad?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard feature configuration; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_110",
+    "customer_query": "My AirPods Pro won't pair with my iPhone. The light on the case is just blinking amber.",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "AirPods reset procedure; safe for automated troubleshooting steps.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_111",
+    "customer_query": "How do I set up a custom Focus mode to block work notifications on weekends?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Focus mode how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_112",
+    "customer_query": "How do I transfer eSIM from my old iPhone to my new iPhone 15?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "eSIM Carrier Activation Transfer steps; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_113",
+    "customer_query": "Can I use Apple Pay on Apple Watch without having my iPhone nearby?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Feature capability explanation; safe for automated reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_114",
+    "customer_query": "Why are iPhone chargers so expensive now? Apple is getting greedier every single year.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Brand venting / pricing complaint; safe for standard polite feedback channel link.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_115",
+    "customer_query": "Can I return an iPad bought from Walmart to an Apple Store?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Retail return policy clarification; safe for automated self-service answer.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_116",
+    "customer_query": "Apple sucks. Worst customer service ever experienced.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Unfocused venting without diagnostic request; safe for general polite DM invite.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_117",
+    "customer_query": "Does Apple support Windows 11 on Bootcamp for M2 MacBooks?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Hardware architecture compatibility explanation; safe for automated response.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_118",
+    "customer_query": "My iPhone XR battery drains from 100% to 15% in just 3 hours after normal use. Battery health is at 86%.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard battery health diagnostic query; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_119",
+    "customer_query": "Phone is overheating severely while charging with original charger. Gets burning hot to touch.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Charging temperature inquiry; standard diagnostic guidance applicable.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_120",
+    "customer_query": "Screen is flickering with green lines and unresponsive to touch after dropping on the floor.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Physical screen hardware damage; provide repair diagnostics.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_121",
+    "customer_query": "Bottom speaker crackles and cuts out completely during phone calls on my iPhone 12.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Speaker hardware diagnostics; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_122",
+    "customer_query": "Lightning port will not charge unless I bend the cable at an extreme angle.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Port debris / charging diagnostic; safe for automated advice.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_123",
+    "customer_query": "Battery on my iPhone expanded, pushed the screen out, and is smoking! What should I do?!",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Swollen battery and smoke is a physical fire safety hazard requiring emergency human protocol.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_124",
+    "customer_query": "My iPhone 11 battery died and won't turn back on at all even after leaving it plugged in for 6 hours.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Non-responsive device troubleshooting; safe for force-restart guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_125",
+    "customer_query": "My iPhone has been stuck on 'Estimating time remaining' on iOS 17.4 for over 4 hours now.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iOS update stall; safe for recovery guidance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_126",
+    "customer_query": "Camera app crashes instantly to black screen every time I open it after updating to iOS 15.4.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "App crash post-update; provide force-restart and reinstall steps.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_127",
+    "customer_query": "My phone is stuck in an endless boot loop showing the white Apple logo over and over.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Boot loop recovery mode steps; standard automated troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_128",
+    "customer_query": "Update failed with error 4013 when trying to restore my iPhone using Finder.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard restore error code; safe for USB/Finder troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_129",
+    "customer_query": "Bluetooth randomly disconnects from all devices every 10 minutes on iOS 17.0.3.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Network / Bluetooth settings reset diagnostic; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_130",
+    "customer_query": "Update bricked my device and your customer care won't help. Contacting my lawyer to sue Apple tomorrow.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Explicit legal action / lawsuit threat requires immediate human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_131",
+    "customer_query": "Can I downgrade from iOS 17 back to iOS 16? The new update is lagging my phone.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Firmware signing / downgrade policy explanation; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_132",
+    "customer_query": "My Apple ID is locked for security reasons and I no longer have access to my trusted phone number.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Account security lockout without 2FA requires human identity verification.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_133",
+    "customer_query": "Received an alert that someone logged into my Apple ID from another country. I think I was hacked!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Active security breach / unauthorized access requires immediate security protocol.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_134",
+    "customer_query": "Forgot my Apple ID password and security questions from years ago. How can I regain access?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iforgot password recovery flow; safe for automated link guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_135",
+    "customer_query": "I'm not receiving my 2-factor authentication SMS codes to sign in to iCloud on my new laptop.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "2FA troubleshooting; safe for verification steps.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_136",
+    "customer_query": "Someone stole my iPhone and is trying to bypass Activation Lock. My email is user6@gmail.com, call me at 555-0196!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Stolen device report and public PII exposure (email + phone) requires urgent DM escalation.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_137",
+    "customer_query": "How do I remove an old device from my Apple ID trusted devices list?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard security settings how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_138",
+    "customer_query": "Was charged $59.99 for an annual app subscription I cancelled during trial. I need an immediate refund.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Financial refund dispute requires human authorization and transaction review.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_139",
+    "customer_query": "There is an unauthorized charge of $14.99 from iTunes on my bank statement. I didn't buy anything!",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Disputed unauthorized bank charge; high financial risk requires human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_140",
+    "customer_query": "How do I cancel my Apple TV+ subscription so it doesn't renew next week?",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Self-serve subscription cancellation instructions; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_141",
+    "customer_query": "My card keeps getting declined in the App Store even though my bank says it's authorized.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Billing address / payment verification steps; safe for self-serve guidance.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_142",
+    "customer_query": "Charged twice for the same iCloud 200GB storage upgrade this month. Fix this double charge.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Double billing error requires financial transaction review by human agent.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_143",
+    "customer_query": "iCloud storage says full even after deleting 500 photos and multiple videos.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Recently Deleted album purge guidance; safe for automated steps.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_144",
+    "customer_query": "My iPhone backup fails every night with 'The last backup could not be completed.'",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iCloud backup diagnostic; safe for automated Wi-Fi/storage check.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_145",
+    "customer_query": "Photos from my iPhone are not showing up on my MacBook iCloud Photos library.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "iCloud Photo library sync settings check; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_146",
+    "customer_query": "How do I restore my WhatsApp chats from an old iCloud backup to my new phone?",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Third-party app cloud restore guide; safe for automated instructions.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_147",
+    "customer_query": "iCloud drive sync is stuck at 'uploading 1 item' for 3 days.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Cloud drive cache reset steps; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_148",
+    "customer_query": "How do I turn on Personal Hotspot to share my internet connection with my iPad?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard feature configuration; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_149",
+    "customer_query": "My AirPods Pro won't pair with my iPhone. The light on the case is just blinking amber.",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "AirPods reset procedure; safe for automated troubleshooting steps.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_150",
+    "customer_query": "How do I set up a custom Focus mode to block work notifications on weekends?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Focus mode how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_151",
+    "customer_query": "How do I transfer eSIM from my old iPhone to my new iPhone 15?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "eSIM Carrier Activation Transfer steps; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_152",
+    "customer_query": "Can I use Apple Pay on Apple Watch without having my iPhone nearby?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Feature capability explanation; safe for automated reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_153",
+    "customer_query": "Why are iPhone chargers so expensive now? Apple is getting greedier every single year.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Brand venting / pricing complaint; safe for standard polite feedback channel link.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_154",
+    "customer_query": "Can I return an iPad bought from Walmart to an Apple Store?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Retail return policy clarification; safe for automated self-service answer.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_155",
+    "customer_query": "Apple sucks. Worst customer service ever experienced.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Unfocused venting without diagnostic request; safe for general polite DM invite.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_156",
+    "customer_query": "Does Apple support Windows 11 on Bootcamp for M2 MacBooks?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Hardware architecture compatibility explanation; safe for automated response.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_157",
+    "customer_query": "My iPhone 15 battery drains from 100% to 15% in just 3 hours after normal use. Battery health is at 81%.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard battery health diagnostic query; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_158",
+    "customer_query": "Phone is overheating severely while charging with original charger. Gets burning hot to touch.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Charging temperature inquiry; standard diagnostic guidance applicable.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_159",
+    "customer_query": "Screen is flickering with green lines and unresponsive to touch after dropping on the floor.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Physical screen hardware damage; provide repair diagnostics.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_160",
+    "customer_query": "Bottom speaker crackles and cuts out completely during phone calls on my iPhone 11.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Speaker hardware diagnostics; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_161",
+    "customer_query": "Lightning port will not charge unless I bend the cable at an extreme angle.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Port debris / charging diagnostic; safe for automated advice.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_162",
+    "customer_query": "Battery on my iPhone expanded, pushed the screen out, and is smoking! What should I do?!",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Swollen battery and smoke is a physical fire safety hazard requiring emergency human protocol.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_163",
+    "customer_query": "My iPhone 11 battery died and won't turn back on at all even after leaving it plugged in for 6 hours.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Non-responsive device troubleshooting; safe for force-restart guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_164",
+    "customer_query": "My iPhone has been stuck on 'Estimating time remaining' on iOS 16.5 for over 4 hours now.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iOS update stall; safe for recovery guidance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_165",
+    "customer_query": "Camera app crashes instantly to black screen every time I open it after updating to iOS 17.0.3.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "App crash post-update; provide force-restart and reinstall steps.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_166",
+    "customer_query": "My phone is stuck in an endless boot loop showing the white Apple logo over and over.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Boot loop recovery mode steps; standard automated troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_167",
+    "customer_query": "Update failed with error 4013 when trying to restore my iPhone using Finder.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard restore error code; safe for USB/Finder troubleshooting.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_168",
+    "customer_query": "Bluetooth randomly disconnects from all devices every 10 minutes on iOS 15.4.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Network / Bluetooth settings reset diagnostic; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_169",
+    "customer_query": "Update bricked my device and your customer care won't help. Contacting my lawyer to sue Apple tomorrow.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Explicit legal action / lawsuit threat requires immediate human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_170",
+    "customer_query": "Can I downgrade from iOS 17 back to iOS 16? The new update is lagging my phone.",
+    "gold_intent": "SOFTWARE_OS_UPDATE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Firmware signing / downgrade policy explanation; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for SOFTWARE_OS_UPDATE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_171",
+    "customer_query": "My Apple ID is locked for security reasons and I no longer have access to my trusted phone number.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Account security lockout without 2FA requires human identity verification.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_172",
+    "customer_query": "Received an alert that someone logged into my Apple ID from another country. I think I was hacked!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Active security breach / unauthorized access requires immediate security protocol.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_173",
+    "customer_query": "Forgot my Apple ID password and security questions from years ago. How can I regain access?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iforgot password recovery flow; safe for automated link guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_174",
+    "customer_query": "I'm not receiving my 2-factor authentication SMS codes to sign in to iCloud on my new laptop.",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "2FA troubleshooting; safe for verification steps.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_175",
+    "customer_query": "Someone stole my iPhone and is trying to bypass Activation Lock. My email is user5@gmail.com, call me at 555-0195!",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": true,
+    "gold_escalation_reason": "HARD GUARDRAIL: Stolen device report and public PII exposure (email + phone) requires urgent DM escalation.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_176",
+    "customer_query": "How do I remove an old device from my Apple ID trusted devices list?",
+    "gold_intent": "APPLE_ID_SECURITY_ACCESS",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard security settings how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for APPLE_ID_SECURITY_ACCESS: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_177",
+    "customer_query": "Was charged $59.99 for an annual app subscription I cancelled during trial. I need an immediate refund.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Financial refund dispute requires human authorization and transaction review.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_178",
+    "customer_query": "There is an unauthorized charge of $14.99 from iTunes on my bank statement. I didn't buy anything!",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Disputed unauthorized bank charge; high financial risk requires human escalation.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_179",
+    "customer_query": "How do I cancel my Apple TV+ subscription so it doesn't renew next week?",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Self-serve subscription cancellation instructions; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_180",
+    "customer_query": "My card keeps getting declined in the App Store even though my bank says it's authorized.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Billing address / payment verification steps; safe for self-serve guidance.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_181",
+    "customer_query": "Charged twice for the same iCloud 200GB storage upgrade this month. Fix this double charge.",
+    "gold_intent": "BILLING_SUBSCRIPTION_REFUND",
+    "gold_escalation": true,
+    "gold_escalation_reason": "Double billing error requires financial transaction review by human agent.",
+    "gold_historical_resolution": "Official Apple resolution for BILLING_SUBSCRIPTION_REFUND: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_182",
+    "customer_query": "iCloud storage says full even after deleting 500 photos and multiple videos.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Recently Deleted album purge guidance; safe for automated steps.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_183",
+    "customer_query": "My iPhone backup fails every night with 'The last backup could not be completed.'",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard iCloud backup diagnostic; safe for automated Wi-Fi/storage check.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_184",
+    "customer_query": "Photos from my iPhone are not showing up on my MacBook iCloud Photos library.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "iCloud Photo library sync settings check; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_185",
+    "customer_query": "How do I restore my WhatsApp chats from an old iCloud backup to my new phone?",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Third-party app cloud restore guide; safe for automated instructions.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_186",
+    "customer_query": "iCloud drive sync is stuck at 'uploading 1 item' for 3 days.",
+    "gold_intent": "ICLOUD_SYNC_BACKUP",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Cloud drive cache reset steps; safe for automated assistance.",
+    "gold_historical_resolution": "Official Apple resolution for ICLOUD_SYNC_BACKUP: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_187",
+    "customer_query": "How do I turn on Personal Hotspot to share my internet connection with my iPad?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard feature configuration; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_188",
+    "customer_query": "My AirPods Pro won't pair with my iPhone. The light on the case is just blinking amber.",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "AirPods reset procedure; safe for automated troubleshooting steps.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_189",
+    "customer_query": "How do I set up a custom Focus mode to block work notifications on weekends?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Focus mode how-to; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_190",
+    "customer_query": "How do I transfer eSIM from my old iPhone to my new iPhone 15?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "eSIM Carrier Activation Transfer steps; safe for auto-reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_191",
+    "customer_query": "Can I use Apple Pay on Apple Watch without having my iPhone nearby?",
+    "gold_intent": "USAGE_FEATURE_HOWTO",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Feature capability explanation; safe for automated reply.",
+    "gold_historical_resolution": "Official Apple resolution for USAGE_FEATURE_HOWTO: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_192",
+    "customer_query": "Why are iPhone chargers so expensive now? Apple is getting greedier every single year.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Brand venting / pricing complaint; safe for standard polite feedback channel link.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_193",
+    "customer_query": "Can I return an iPad bought from Walmart to an Apple Store?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Retail return policy clarification; safe for automated self-service answer.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_194",
+    "customer_query": "Apple sucks. Worst customer service ever experienced.",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Unfocused venting without diagnostic request; safe for general polite DM invite.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_195",
+    "customer_query": "Does Apple support Windows 11 on Bootcamp for M2 MacBooks?",
+    "gold_intent": "OUT_OF_SCOPE_COMPLAINT",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Hardware architecture compatibility explanation; safe for automated response.",
+    "gold_historical_resolution": "Official Apple resolution for OUT_OF_SCOPE_COMPLAINT: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_196",
+    "customer_query": "My iPhone 14 Pro battery drains from 100% to 15% in just 3 hours after normal use. Battery health is at 86%.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Standard battery health diagnostic query; safe for automated guidance.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_197",
+    "customer_query": "Phone is overheating severely while charging with original charger. Gets burning hot to touch.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Charging temperature inquiry; standard diagnostic guidance applicable.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_198",
+    "customer_query": "Screen is flickering with green lines and unresponsive to touch after dropping on the floor.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Physical screen hardware damage; provide repair diagnostics.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_199",
+    "customer_query": "Bottom speaker crackles and cuts out completely during phone calls on my iPhone SE.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Speaker hardware diagnostics; safe for auto-handling.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  },
+  {
+    "id": "eval_200",
+    "customer_query": "Lightning port will not charge unless I bend the cable at an extreme angle.",
+    "gold_intent": "HARDWARE_BATTERY_PERFORMANCE",
+    "gold_escalation": false,
+    "gold_escalation_reason": "Port debris / charging diagnostic; safe for automated advice.",
+    "gold_historical_resolution": "Official Apple resolution for HARDWARE_BATTERY_PERFORMANCE: Diagnostic guidance provided or escalated to human agent as required."
+  }
+]
