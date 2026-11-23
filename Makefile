@@ -2,7 +2,7 @@
 # Verifiable Support Agent v2 — Automation Makefile
 # ==============================================================================
 
-.PHONY: help install test lint eval eval-baseline eval-v2 eval-retrieval eval-compare eval-latency-cost run serve docker-build clean
+.PHONY: help install test lint eval eval-baseline eval-v2 eval-retrieval eval-compare eval-latency-cost report run serve docker-build clean
 
 PYTHON ?= python
 
@@ -16,6 +16,7 @@ help:
 	@echo "  eval-retrieval  Run retrieval A/B benchmark (v1 vs pgvector)"
 	@echo "  eval-compare    Compare v1 vs v2 side-by-side benchmark results"
 	@echo "  eval-latency-cost Run LLM-native latency, cost, and revision benchmark"
+	@echo "  report          Generate Markdown and Rich benchmark audit report"
 	@echo "  serve           Start FastAPI development server on port 8000"
 	@echo "  run             Run interactive CLI demonstration"
 	@echo "  docker-build    Build Cloud Run production container image"
@@ -45,6 +46,9 @@ eval-compare:
 
 eval-latency-cost:
 	$(PYTHON) eval/runners/latency_cost_eval.py --sample-size 100 --output eval/results/latency_cost.json
+
+report:
+	$(PYTHON) eval/runners/generate_report.py
 
 eval:
 	$(PYTHON) app/v1/evaluate.py

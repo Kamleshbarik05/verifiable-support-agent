@@ -15,7 +15,7 @@ from typing import Any
 import numpy as np
 from fastapi import FastAPI, Header, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import PlainTextResponse, RedirectResponse
 
 from app.agents.orchestrator import OrchestratorAgent
 from app.api.schemas import HealthResponse, TriageRequest, TriageResponse
@@ -95,6 +95,12 @@ async def trace_and_log_middleware(request: Request, call_next):
     }
     logger.info(json.dumps(log_record))
     return response
+
+
+@app.get("/", include_in_schema=False)
+def root_redirect():
+    """Redirects root URL directly to interactive Swagger API documentation."""
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/health", response_model=HealthResponse, tags=["Monitoring"])
