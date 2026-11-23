@@ -4,7 +4,7 @@
 Accepted
 
 ## Context
-As we evolve `verifiable-support-agent` from a v1 prototype (single-script pipeline) into a v2 production-grade multi-agent system on Google Cloud Platform, the system architecture introduces significant complexity:
+As we evolve `verifiable-support-agent` from a v1 prototype (single-script pipeline) into a v2 multi-agent system designed for Google Cloud Platform target deployment, the system architecture introduces significant complexity:
 - Multi-agent orchestration patterns (Google ADK, hierarchical delegation, self-reflection).
 - Vector retrieval architectures (Cloud SQL pgvector vs. Vertex AI Vector Search vs. FAISS).
 - Deterministic guardrails vs. LLM-based policy checks.

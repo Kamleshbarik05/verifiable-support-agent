@@ -1,13 +1,13 @@
 # System Architecture Specification
 
-## Verifiable Support Agent v2 — Production Multi-Agent Platform on Google Cloud
+## Verifiable Support Agent v2 — Multi-Agent Platform Architecture
 
 ---
 
 ## 1. Executive Overview
-The **Verifiable Support Agent v2** is an enterprise-grade multi-agent customer support triage and grounded resolution platform. Engineered to solve acute enterprise hallucination, regulatory liability, and cost unpredictability in autonomous customer engagement, the system transforms unstructured customer inquiries (e.g., Apple Support tweets) into mathematically verifiable, policy-compliant resolutions.
+The **Verifiable Support Agent v2** is a multi-agent customer support triage and grounded resolution platform. Engineered to address enterprise hallucination, regulatory liability, and cost unpredictability in autonomous customer engagement, the system transforms unstructured customer inquiries (e.g., Apple Support tweets) into verifiable, policy-compliant resolutions.
 
-Built on **Google Cloud Platform (GCP)** and implementing the **Google Agent Development Kit (ADK)** hierarchical pattern, the platform replaces brittle prompt-stuffed architectures with specialized agents operating under deterministic quality and safety gates.
+Designed around **Google Cloud Platform (GCP)** target deployment patterns and implementing the **Google Agent Development Kit (ADK)** hierarchical pattern, the platform replaces brittle prompt-stuffed architectures with specialized agents operating under deterministic quality and safety gates.
 
 ---
 
@@ -85,7 +85,9 @@ flowchart TD
 
 ---
 
-## 4. Google Cloud Production Deployment Topology
+## 4. Target Google Cloud Deployment Topology (not deployed)
+
+> **Deployment Status:** This cloud topology represents a target architectural design and has not yet been executed in a live GCP production environment. Local evaluation, tests, and API serving operate with in-memory stores and local telemetry exporters.
 
 ```mermaid
 flowchart TD

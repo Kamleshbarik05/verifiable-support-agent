@@ -1,14 +1,13 @@
-# Verifiable Support Agent v2 — Autonomous Multi-Agent Support on Google Cloud
+# Verifiable Support Agent v2 — Multi-Agent Support Triage & Grounded Resolution
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://img.shields.io/badge/tests-37%20passed-brightgreen.svg)]()
 [![Ruff Lint](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![OpenTelemetry](https://img.shields.io/badge/tracing-OpenTelemetry-blueviolet.svg)](https://opentelemetry.io/)
-[![Google Cloud Run](https://img.shields.io/badge/deployed-Cloud%20Run-4285F4.svg)](https://cloud.google.com/run)
 [![pgvector](https://img.shields.io/badge/vector%20db-pgvector-336791.svg)](https://github.com/pgvector/pgvector)
 
-> **A Production-Grade Multi-Agent Support Triage & Grounded Resolution Platform on Google Cloud Platform (GCP) with pgvector, OpenTelemetry Distributed Tracing, Deterministic URL Allowlisting, and Bounded Self-Reflection Loops.**
+> **Multi-agent customer support triage and grounded resolution architecture with pgvector retrieval, OpenTelemetry distributed tracing, deterministic URL allowlisting, and bounded self-reflection.**
 
 ---
 
@@ -91,7 +90,9 @@ All numbers below are extracted directly from machine-generated JSON benchmarks 
 
 ---
 
-## ☁️ Google Cloud Platform Deployment Topology
+## ☁️ Target Deployment Architecture (not deployed)
+
+> **Deployment Status:** The GCP topology outlined below represents a documented target deployment architecture that has not yet been executed or deployed to live cloud infrastructure. Unit/integration tests, in-memory pgvector emulation, offline benchmarks, and the local FastAPI server run entirely in local development environments.
 
 ```mermaid
 flowchart LR

@@ -1,9 +1,9 @@
+# ==============================================================================
+# Target Deployment Workflow (documentation only, not yet run in production)
+# ==============================================================================
 name: Deploy to Google Cloud Run
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
   workflow_dispatch:
 
 permissions:
