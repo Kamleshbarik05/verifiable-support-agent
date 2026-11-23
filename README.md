@@ -7,7 +7,7 @@
 [![OpenTelemetry](https://img.shields.io/badge/tracing-OpenTelemetry-blueviolet.svg)](https://opentelemetry.io/)
 [![pgvector](https://img.shields.io/badge/vector%20db-pgvector-336791.svg)](https://github.com/pgvector/pgvector)
 
-> **Multi-agent customer support triage and grounded resolution architecture with pgvector retrieval, OpenTelemetry distributed tracing, deterministic URL allowlisting, and bounded self-reflection.**
+> **Multi-agent customer support triage and grounded resolution architecture with pgvector retrieval, local OpenTelemetry tracing, deterministic URL allowlisting, and bounded self-reflection.**
 
 ---
 
@@ -15,7 +15,7 @@
 
 In enterprise customer support, generating plausible conversational text is trivial; **proving that an automated multi-agent system can be trusted is the core engineering challenge**. When deploying LLMs on public customer channels (such as `@AppleSupport` on Twitter/X), generative models frequently generate hallucinated warranty policies, fabricate non-existent support URLs, leak customer PII, or fail to escalate physical hardware hazards (e.g., swollen smoking batteries) to human specialists.
 
-Based on problem framing and domain requirements documented in [`docs/discovery.md`](docs/discovery.md), **`verifiable-support-agent v2`** replaces brittle, single-prompt LLM wrappers with a **hierarchical multi-agent architecture (Google ADK)** backed by **dense semantic vector retrieval (`pgvector` on Cloud SQL)**, **deterministic guardrail firewalls**, and **OpenTelemetry distributed tracing**.
+Based on problem framing and domain requirements documented in [`docs/discovery.md`](docs/discovery.md), **`verifiable-support-agent v2`** replaces brittle, single-prompt LLM wrappers with a **hierarchical multi-agent architecture (Google ADK)** backed by **dense semantic vector retrieval (`pgvector`)**, **deterministic guardrail firewalls**, and **local OpenTelemetry tracing** (Cloud Trace = design target only; see [`docs/tracing_guide.md`](docs/tracing_guide.md)).
 
 ---
 
@@ -200,7 +200,7 @@ Key architectural trade-offs are documented in compliance with architecture stan
 - [**ADR 0001: Record Architecture Decisions**](docs/adr/0001-record-architecture-decisions.md) — Selection of version-controlled lightweight ADRs.
 - [**ADR 0002: Vector Store Architecture**](docs/adr/0002-vector-store.md) — Why PostgreSQL `pgvector` with HNSW indexing was chosen over FAISS, Chroma, and Vertex Vector Search.
 - [**ADR 0003: Multi-Agent System Topology**](docs/adr/0003-multi-agent-architecture.md) — Rationale for Google ADK hierarchical delegation with bounded self-reflection loops.
-- [**ADR 0004: Observability, Tracing & Cost Accounting**](docs/adr/0004-observability-and-cost-tracing.md) — OpenTelemetry standards, 100% uniform audit sampling, and strict PII scrubbing.
+- [**ADR 0004: Observability, Tracing & Cost Accounting**](docs/adr/0004-observability-and-cost-tracing.md) — Local OpenTelemetry tracing, 100% uniform audit sampling, and strict PII scrubbing (Cloud Trace = design target only; see [`docs/tracing_guide.md`](docs/tracing_guide.md)).
 
 ---
 

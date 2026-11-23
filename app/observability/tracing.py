@@ -105,8 +105,9 @@ def clear_recorded_spans() -> None:
 class SupportTracer:
     """
     Manages OpenTelemetry distributed tracing with multi-mode export:
+    - 'otlp' / 'jaeger': Local Jaeger or Arize Phoenix container via OTLP HTTP (port 4318)
     - 'console': Formatted local stdout span printing
-    - 'gcp': Google Cloud Trace exporter (CloudRun/GCP)
+    - 'gcp': Google Cloud Trace exporter (design target only; requires GCP credentials)
     - 'none' (default): In-memory recording with zero network/cloud dependencies
     """
 
@@ -126,7 +127,18 @@ class SupportTracer:
 
             provider = TracerProvider(sampler=ALWAYS_ON)
 
-            if self.exporter_mode == "console":
+            if self.exporter_mode in ("otlp", "jaeger"):
+                try:
+                    from opentelemetry.exporter.otlp.proto.http.trace_exporter import (
+                        OTLPSpanExporter,
+                    )
+
+                    endpoint = os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT", "http://localhost:4318/v1/traces")
+                    provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint=endpoint)))
+                except Exception:
+                    # Fallback to console if OTLP exporter fails or container is offline
+                    provider.add_span_processor(BatchSpanProcessor(ConsoleSpanExporter()))
+            elif self.exporter_mode == "console":
                 provider.add_span_processor(BatchSpanProcessor(ConsoleSpanExporter()))
             elif self.exporter_mode == "gcp":
                 try:

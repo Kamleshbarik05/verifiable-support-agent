@@ -11,7 +11,7 @@ Deploying multi-agent systems in enterprise customer support introduces operatio
 1. **Latency Opacity:** Multi-agent architectures involve sequential handoffs and bounded self-reflection loops. Without distributed tracing, it is impossible to determine whether tail latency originates from vector search, LLM generation, or repetitive critic revisions.
 2. **Cost Predictability:** Generative LLM architectures incur variable token-based expenses. Production teams require granular, step-by-step cost attribution to detect runaway token consumption.
 3. **Data Governance & PII Protection:** In public support channels, customer tickets frequently leak personal email addresses, phone numbers, and account credentials. Storing unredacted customer inquiries in centralized observability backends (Cloud Trace, Jaeger, Datadog) violates GDPR, CCPA, and SOC2 compliance.
-4. **Cloud Trace Correlation (Target Architecture):** In target Cloud Run deployments, services are designed to correlate application logs with distributed traces so engineers can navigate seamlessly from an error log to its trace waterfall in the Google Cloud Console.
+4. **Local OpenTelemetry Tracing & Cloud Trace Design Target:** Locally, local OpenTelemetry tracing exports to a local Jaeger container or stdout console. Google Cloud Trace is a target design only, never executed against live GCP.
 
 ## Decision
 
