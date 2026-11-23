@@ -38,7 +38,7 @@ ignore = [
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["app", "eval"]
+known-first-party = ["app", "eval", "adk_agent"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

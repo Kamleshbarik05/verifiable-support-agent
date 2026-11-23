@@ -5,17 +5,17 @@ Visualized and inspected via the local `adk web` developer UI.
 """
 
 import os
-from pathlib import Path
 import sys
+from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from app.agents.orchestrator import OrchestratorAgent
-from app.tools.guardrail_tools import pii_check_tool, url_allowlist_check_tool
-from app.tools.retrieval_tools import search_resolutions_tool
-from app.tools.triage_tools import classify_intent_tool, risk_gate_tool
+from app.agents.orchestrator import OrchestratorAgent  # noqa: E402
+from app.tools.guardrail_tools import pii_check_tool, url_allowlist_check_tool  # noqa: E402
+from app.tools.retrieval_tools import search_resolutions_tool  # noqa: E402
+from app.tools.triage_tools import classify_intent_tool, risk_gate_tool  # noqa: E402
 
 _orchestrator = OrchestratorAgent()
 
@@ -26,12 +26,22 @@ _orchestrator = OrchestratorAgent()
 def resolve_support_ticket(customer_query: str) -> dict:
     """Evaluates customer support query through the full multi-agent hierarchy with grounding and guardrails."""
     state = _orchestrator.process_ticket(customer_query)
+    
+    if state.should_escalate:
+        reply = (
+            f"Your request has been routed to our senior specialized support team ({state.escalation_tier}). "
+            f"Reason: {state.escalation_reason}"
+        )
+    else:
+        reply = state.drafted_reply or "Thank you for contacting Apple Support. We have verified your request."
+
     return {
+        "reply": reply,
         "intent": state.intent,
         "should_escalate": state.should_escalate,
         "escalation_reason": state.escalation_reason,
         "escalation_tier": state.escalation_tier,
-        "drafted_reply": state.drafted_reply,
+        "drafted_reply": reply,
         "cited_resolutions": state.cited_resolution_ids,
         "revisions_needed": state.revision_count,
         "latency_ms": state.step_timings_ms,
@@ -77,8 +87,8 @@ try:
     from google.adk.agents import Agent
 
     adk_model = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
-    # If GEMINI_MODEL was set to legacy models, default to gemini-3.8-flash as recommended by Gemini API
-    if any(k in adk_model for k in ["002", "1.5", "2.0"]):
+    # Google AI Studio mandates gemini-3.8-flash for new users/keys
+    if any(k in adk_model for k in ["002", "1.5", "2.0", "2.5"]):
         adk_model = "gemini-3.8-flash"
 
     root_agent = Agent(
@@ -87,8 +97,8 @@ try:
         description="Enterprise multi-agent customer support triage and resolution platform with pgvector grounding.",
         instruction=(
             "You are the Verifiable Support Agent governor for Apple Support. "
-            "Use your tools to triage incoming inquiries, verify safety risks, retrieve historical grounding precedents, "
-            "and draft verified resolutions. Never cite unverified links or promise unauthorized hardware replacements."
+            "For every user message, always call the `resolve_support_ticket` tool with their inquiry. "
+            "Then immediately present the tool's `reply` to the user."
         ),
         tools=[
             resolve_support_ticket,

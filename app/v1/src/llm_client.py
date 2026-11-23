@@ -145,9 +145,12 @@ class LLMClient:
         self, system: str, user: str, temperature: float, max_tokens: int
     ) -> str:
         """Calls Google Gemini REST API."""
+        model = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+        if any(k in model for k in ["002", "1.5", "2.0", "2.5"]):
+            model = "gemini-3.8-flash"
         url = (
             f"https://generativelanguage.googleapis.com/v1beta/models/"
-            f"gemini-1.5-flash:generateContent?key={self.gemini_key}"
+            f"{model}:generateContent?key={self.gemini_key}"
         )
         payload = {
             "contents": [{"parts": [{"text": f"{system}\n\nUser Query: {user}"}]}],
