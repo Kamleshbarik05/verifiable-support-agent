@@ -13,7 +13,7 @@
 
 ## 🎯 Problem Statement & Technical Discovery
 
-In enterprise customer support, generating plausible conversational text is trivial; **proving that an autonomous AI agent can be trusted in production is the core engineering challenge**. When deploying LLMs on public customer channels (such as `@AppleSupport` on Twitter/X), autonomous models frequently generate hallucinated warranty policies, fabricate non-existent support URLs, leak customer PII, or fail to escalate physical hardware hazards (e.g., swollen smoking batteries) to human specialists.
+In enterprise customer support, generating plausible conversational text is trivial; **proving that an automated multi-agent system can be trusted is the core engineering challenge**. When deploying LLMs on public customer channels (such as `@AppleSupport` on Twitter/X), generative models frequently generate hallucinated warranty policies, fabricate non-existent support URLs, leak customer PII, or fail to escalate physical hardware hazards (e.g., swollen smoking batteries) to human specialists.
 
 Based on problem framing and domain requirements documented in [`docs/discovery.md`](docs/discovery.md), **`verifiable-support-agent v2`** replaces brittle, single-prompt LLM wrappers with a **hierarchical multi-agent architecture (Google ADK)** backed by **dense semantic vector retrieval (`pgvector` on Cloud SQL)**, **deterministic guardrail firewalls**, and **OpenTelemetry distributed tracing**.
 
@@ -77,8 +77,8 @@ All metrics below are generated from frozen evaluation artifacts in [`eval/resul
 | **Escalation FNR (Safety Liability)** | `12.5%` | `12.5%` | `+0.0%` | Offline mock (`eval/results/e2e_v2.json`) |
 | **Hallucinated URL Rate** | `0.0%` | **`0.0%`** | `+0.0%` | Deterministic allowlist (`eval/results/e2e_v2.json`) |
 | **Judge Pass Rate** | `100.0%` | `100.0%` | `+0.0%` | Offline mock judge, not an LLM evaluation (`eval/results/e2e_v2.json`) |
-| **Cohen's Kappa (Escalation)** | `0.6935` | `0.6935` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
-| **Cohen's Kappa (Safety)** | `1.0000` | `1.0000` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Escalation, n=50)** | `0.6935` | `0.6935` | `0.0000` | Synthetic calibration set, programmatic rules & offline mock judge (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Safety, n=50)** | `1.0000` | `1.0000` | `0.0000` | Synthetic calibration set, programmatic rules & offline mock judge (`eval/results/e2e_v2.json`) |
 
 - **Escalation Trade-off:** The system enforces an asymmetric safety priority: maximizing recall (87.5%) to guarantee hazardous hardware incidents (battery swelling/smoke) are never missed, trading off precision (19.4%) since reviewing false alarms is operationally cheap compared to catastrophic liability.
 - **Escalation Baseline:** The False Negative Rate dropped from 88.0% (naive keyword baseline) to 12.5% in v1; v2 preserves this 12.5% safety rate across multi-agent handoffs.

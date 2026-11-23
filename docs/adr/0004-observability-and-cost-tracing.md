@@ -7,7 +7,7 @@ Accepted
 2026-11-23
 
 ## Context
-Deploying autonomous multi-agent systems in enterprise customer support introduces acute operational risks:
+Deploying multi-agent systems in enterprise customer support introduces operational risks:
 1. **Latency Opacity:** Multi-agent architectures involve sequential handoffs and bounded self-reflection loops. Without distributed tracing, it is impossible to determine whether tail latency originates from vector search, LLM generation, or repetitive critic revisions.
 2. **Cost Predictability:** Generative LLM architectures incur variable token-based expenses. Production teams require granular, step-by-step cost attribution to detect runaway token consumption.
 3. **Data Governance & PII Protection:** In public support channels, customer tickets frequently leak personal email addresses, phone numbers, and account credentials. Storing unredacted customer inquiries in centralized observability backends (Cloud Trace, Jaeger, Datadog) violates GDPR, CCPA, and SOC2 compliance.
@@ -19,7 +19,8 @@ Deploying autonomous multi-agent systems in enterprise customer support introduc
 We adopt the vendor-neutral **OpenTelemetry (OTel)** specification rather than proprietary cloud SDKs.
 - **Tracer Provider Configuration:** Configurable via the `OTEL_EXPORTER` environment variable:
   - `console`: Formatted local stdout span rendering for development.
-  - `gcp`: Native export to Google Cloud Trace via `opentelemetry-exporter-gcp-trace`.
+  - `otlp`: OTLP span export to local collector (e.g. Jaeger container).
+  - `gcp`: Export to Google Cloud Trace via `opentelemetry-exporter-gcp-trace` (target deployment design).
   - `none`: Lightweight in-memory span recorder with zero cloud or network dependencies, ensuring local unit tests and offline evaluation harnesses run in milliseconds without credentials.
 - **W3C TraceContext Propagation:** All inbound requests receive or generate an explicit W3C `trace_id`, propagated through FastAPI headers (`X-Trace-ID`), sub-agent spans, and structured JSON logs.
 
@@ -41,7 +42,7 @@ Each agent boundary (`TriageAgent`, `RetrievalAgent`, `DraftAgent`, `PolicyGuard
 - `tokens_per_second`: Generative drafting velocity ($N_{\text{output}} / \Delta t$).
 - `estimated_cost_usd`: Dollar cost computed via versioned Vertex AI pricing tables in `app/observability/cost_model.py`.
 
-### 5. Google Cloud Logging & Cloud Trace Correlation
+### 5. Google Cloud Logging & Cloud Trace Correlation (Target Architecture)
 Structured JSON logs emitted by the application include the standard GCP trace field:
 ```json
 {

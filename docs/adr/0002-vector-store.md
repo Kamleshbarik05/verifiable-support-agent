@@ -6,7 +6,7 @@ Accepted
 ## Context
 In `verifiable-support-agent` v1, historical support resolutions were retrieved using an in-memory TF-IDF and scikit-learn / sentence-transformers model loaded into Python heap space.
 
-In an enterprise Google Cloud deployment, this architecture introduces major operational flaws:
+In a target enterprise Google Cloud deployment, this architecture introduces major operational flaws:
 1. **Cloud Run Memory & Cold Starts:** Loading dense vector arrays into Python memory inflates container RAM requirements (exceeding 1GB) and adds 10–15 seconds to serverless container cold-start times.
 2. **Lack of Metadata Filtering (Hybrid Search):** Support triage requires filtering by diagnostic intent (e.g. `intent = 'HARDWARE_BATTERY_PERFORMANCE'`) before ranking candidates. In-memory arrays require custom, unindexed Python loops.
 3. **No ACID Persistence:** Support teams update and ingest troubleshooting precedents continuously. In-memory embeddings require restarting running services to refresh the knowledge base.
@@ -16,7 +16,7 @@ We need a persistent vector search architecture that supports hybrid metadata fi
 ## Decision
 
 ### 1. Vector Engine: PostgreSQL with `pgvector` on Cloud SQL
-We choose **PostgreSQL 16 with the `pgvector` extension** hosted on **Google Cloud SQL** (with a local `pgvector/pgvector:pg16` Docker container for local development).
+We choose **PostgreSQL 16 with the `pgvector` extension** targeted for **Google Cloud SQL** (with a local `pgvector/pgvector:pg16` Docker container for local development and testing).
 
 #### Comparison of Alternatives:
 | Evaluation Criteria | PostgreSQL + `pgvector` (Cloud SQL) | Google Vertex AI Vector Search | In-Memory FAISS / Chroma |
@@ -54,7 +54,7 @@ WITH (m = 16, ef_construction = 64);
 ## Consequences
 
 ### Positive
-- **Low Cloud Cost:** Operates on the smallest Google Cloud SQL instance (`db-f1-micro` or `db-custom-1-3840`).
+- **Low Cloud Cost:** Sized for the smallest Google Cloud SQL instance (`db-f1-micro` or `db-custom-1-3840`) in target deployment.
 - **Zero Cold-Start Overhead:** Cloud Run containers remain stateless and lightweight (<256MB base memory).
 - **Hybrid Search:** Combines B-Tree filtered SQL queries (`WHERE intent = ...`) with HNSW cosine ranking in a single query.
 - **Idempotency:** SHA-256 `source_hash` column with `ON CONFLICT (source_hash) DO NOTHING` prevents duplicate embedding costs.

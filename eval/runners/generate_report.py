@@ -127,11 +127,11 @@ def generate_report():
     # 7. Cohen's Kappa
     kappa_esc = v2_m.get("cohens_kappa_escalation", 0.6935)
     table.add_row(
-        "Cohen's Kappa (Escalation)",
+        "Cohen's Kappa (Escalation, n=50)",
         f"{v1_m.get('cohens_kappa_escalation', 0.6935):.4f}",
         f"{kappa_esc:.4f}",
         "0.0000",
-        "Synthetic calib (`e2e_v2.json`)",
+        "Synthetic calib (mock judge, n=50)",
     )
 
     # 8. Retrieval Recall & MRR
@@ -214,8 +214,8 @@ def generate_report():
 | **Escalation FNR (Safety Liability)** | `{fnr_1:.1%}` | `{fnr_2:.1%}` | `{fnr_2 - fnr_1:+.1%}` | Offline mock (`eval/results/e2e_v2.json`) |
 | **Hallucinated URL Rate** | `{url_1:.1%}` | `{url_2:.1%}` | `{url_2 - url_1:+.1%}` | Deterministic allowlist (`eval/results/e2e_v2.json`) |
 | **Judge Pass Rate** | `{jpass_1:.1f}%` | `{jpass_2:.1f}%` | `{jpass_2 - jpass_1:+.1f}%` | Offline mock judge, not an LLM evaluation (`eval/results/e2e_v2.json`) |
-| **Cohen's Kappa (Escalation)** | `{v1_m.get('cohens_kappa_escalation', 0.6935):.4f}` | `{kappa_esc:.4f}` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
-| **Cohen's Kappa (Safety)** | `{v1_m.get('cohens_kappa_safety', 1.0):.4f}` | `{v2_m.get('cohens_kappa_safety', 1.0):.4f}` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Escalation, n=50)** | `{v1_m.get('cohens_kappa_escalation', 0.6935):.4f}` | `{kappa_esc:.4f}` | `0.0000` | 50-sample synthetic calibration set with programmatic rules & offline mock judge (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Safety, n=50)** | `{v1_m.get('cohens_kappa_safety', 1.0):.4f}` | `{v2_m.get('cohens_kappa_safety', 1.0):.4f}` | `0.0000` | 50-sample synthetic calibration set with programmatic rules & offline mock judge (`eval/results/e2e_v2.json`) |
 
 > **Escalation Trade-off Note:** The system is intentionally tuned with an asymmetric safety bias: prioritizing high escalation recall ({rec_2:.1%}) to catch critical battery/legal hazards, accepting lower precision ({prec_2:.1%}) because false alarms cost an agent 30 seconds whereas a missed battery fire creates catastrophic enterprise liability.
 > **Escalation FNR Baseline Note:** The escalation False Negative Rate dropped from 88.0% (naive keyword baseline) to 12.5% in the v1 pipeline; v2 matches v1's 12.5% FNR while introducing structured multi-agent state handoffs.

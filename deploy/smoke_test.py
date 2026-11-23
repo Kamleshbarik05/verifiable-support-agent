@@ -119,7 +119,7 @@ def run_smoke_tests(base_url: str):
 
 def main():
     parser = argparse.ArgumentParser(description="Live Cloud Run Smoke Test Runner")
-    parser.add_argument("url", type=str, help="Base URL of deployed Cloud Run service")
+    parser.add_argument("url", type=str, help="Base URL of target Cloud Run service")
     args = parser.parse_args()
     run_smoke_tests(args.url)
 

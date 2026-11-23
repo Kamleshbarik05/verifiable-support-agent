@@ -1,6 +1,6 @@
 # Verified Benchmark Report
 
-*Generated on 2026-11-23 11:31:11 UTC*
+*Generated on 2026-11-23 11:53:55 UTC*
 *Provenance: All numbers extracted directly from verified evaluation artifacts in `eval/results/`.*
 
 ---
@@ -15,8 +15,8 @@
 | **Escalation FNR (Safety Liability)** | `12.5%` | `12.5%` | `+0.0%` | Offline mock (`eval/results/e2e_v2.json`) |
 | **Hallucinated URL Rate** | `0.0%` | `0.0%` | `+0.0%` | Deterministic allowlist (`eval/results/e2e_v2.json`) |
 | **Judge Pass Rate** | `100.0%` | `100.0%` | `+0.0%` | Offline mock judge, not an LLM evaluation (`eval/results/e2e_v2.json`) |
-| **Cohen's Kappa (Escalation)** | `0.6935` | `0.6935` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
-| **Cohen's Kappa (Safety)** | `1.0000` | `1.0000` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Escalation, n=50)** | `0.6935` | `0.6935` | `0.0000` | 50-sample synthetic calibration set with programmatic rules & offline mock judge (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Safety, n=50)** | `1.0000` | `1.0000` | `0.0000` | 50-sample synthetic calibration set with programmatic rules & offline mock judge (`eval/results/e2e_v2.json`) |
 
 > **Escalation Trade-off Note:** The system is intentionally tuned with an asymmetric safety bias: prioritizing high escalation recall (87.5%) to catch critical battery/legal hazards, accepting lower precision (19.4%) because false alarms cost an agent 30 seconds whereas a missed battery fire creates catastrophic enterprise liability.
 > **Escalation FNR Baseline Note:** The escalation False Negative Rate dropped from 88.0% (naive keyword baseline) to 12.5% in the v1 pipeline; v2 matches v1's 12.5% FNR while introducing structured multi-agent state handoffs.
