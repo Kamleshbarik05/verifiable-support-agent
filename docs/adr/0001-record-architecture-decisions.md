@@ -25,7 +25,7 @@ We will use **Architecture Decision Records (ADRs)** following Michael Nygard's 
 ## Consequences
 
 ### Positive
-- **Traceability:** Establishes a direct audit trail connecting stakeholder discovery findings (`docs/discovery.md`) to codebase implementation.
+- **Traceability:** Establishes a direct audit trail connecting problem framing and requirements analysis (`docs/discovery.md`) to codebase implementation.
 - **Interview Defense:** Provides a structured reference sheet for answering deep architectural questions regarding why specific cloud patterns, vector indexes, and agent topologies were selected.
 - **Decoupled Evolution:** Enables confident refactoring without losing historical context on why constraints exist.
 

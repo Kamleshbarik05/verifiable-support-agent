@@ -15,7 +15,7 @@
 
 In enterprise customer support, generating plausible conversational text is trivial; **proving that an autonomous AI agent can be trusted in production is the core engineering challenge**. When deploying LLMs on public customer channels (such as `@AppleSupport` on Twitter/X), autonomous models frequently generate hallucinated warranty policies, fabricate non-existent support URLs, leak customer PII, or fail to escalate physical hardware hazards (e.g., swollen smoking batteries) to human specialists.
 
-Based on technical discovery sessions documented in [`docs/discovery.md`](docs/discovery.md), **`verifiable-support-agent v2`** replaces brittle, single-prompt LLM wrappers with a **hierarchical multi-agent architecture (Google ADK)** backed by **dense semantic vector retrieval (`pgvector` on Cloud SQL)**, **deterministic guardrail firewalls**, and **OpenTelemetry distributed tracing**.
+Based on problem framing and domain requirements documented in [`docs/discovery.md`](docs/discovery.md), **`verifiable-support-agent v2`** replaces brittle, single-prompt LLM wrappers with a **hierarchical multi-agent architecture (Google ADK)** backed by **dense semantic vector retrieval (`pgvector` on Cloud SQL)**, **deterministic guardrail firewalls**, and **OpenTelemetry distributed tracing**.
 
 ---
 
