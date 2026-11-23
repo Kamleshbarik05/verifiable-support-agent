@@ -141,27 +141,70 @@ class LLMClient:
         res.raise_for_status()
         return res.json()["choices"][0]["message"]["content"].strip()
 
+    _last_gemini_call: float = 0.0
+
     def _call_gemini(
         self, system: str, user: str, temperature: float, max_tokens: int
     ) -> str:
-        """Calls Google Gemini REST API."""
-        model = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+        """Calls Google Gemini API via official genai SDK or REST with rate limiting and exponential backoff."""
+        import time
+        model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
         if any(k in model for k in ["002", "1.5", "2.0", "2.5"]):
-            model = "gemini-3.8-flash"
-        url = (
-            f"https://generativelanguage.googleapis.com/v1beta/models/"
-            f"{model}:generateContent?key={self.gemini_key}"
-        )
-        payload = {
-            "contents": [{"parts": [{"text": f"{system}\n\nUser Query: {user}"}]}],
-            "generationConfig": {
-                "temperature": temperature,
-                "maxOutputTokens": max_tokens,
-            },
-        }
-        res = requests.post(url, json=payload, timeout=20)
-        res.raise_for_status()
-        return res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+            model = "gemini-3.5-flash"
+
+        min_interval = float(os.getenv("GEMINI_RATE_LIMIT_DELAY", "0.5"))
+        max_attempts = 5
+
+        for attempt in range(max_attempts):
+            # Enforce minimum interval between calls
+            elapsed = time.time() - LLMClient._last_gemini_call
+            if elapsed < min_interval:
+                time.sleep(min_interval - elapsed)
+
+            try:
+                LLMClient._last_gemini_call = time.time()
+                try:
+                    from google import genai
+                    from google.genai import types
+                    if not hasattr(self, "_genai_client") or self._genai_client is None:
+                        self._genai_client = genai.Client(
+                            http_options=types.HttpOptions(timeout=20000)
+                        )
+                    config = types.GenerateContentConfig(
+                        temperature=temperature,
+                        max_output_tokens=max_tokens,
+                        system_instruction=system if system else None,
+                    )
+                    resp = self._genai_client.models.generate_content(
+                        model=model,
+                        contents=user,
+                        config=config,
+                    )
+                    return resp.text.strip()
+                except ImportError:
+                    url = (
+                        f"https://generativelanguage.googleapis.com/v1beta/models/"
+                        f"{model}:generateContent?key={self.gemini_key}"
+                    )
+                    payload = {
+                        "contents": [{"parts": [{"text": f"{system}\n\nUser Query: {user}"}]}],
+                        "generationConfig": {
+                            "temperature": temperature,
+                            "maxOutputTokens": max_tokens,
+                        },
+                    }
+                    res = requests.post(url, json=payload, timeout=30)
+                    res.raise_for_status()
+                    return res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+            except Exception as e:
+                err_str = str(e)
+                if any(code in err_str for code in ["429", "503", "ResourceExhausted", "UNAVAILABLE", "high demand"]):
+                    backoff = min_interval * (2 ** (attempt + 1))
+                    time.sleep(backoff)
+                    if attempt == max_attempts - 1:
+                        raise
+                else:
+                    raise
 
     def _call_openai(
         self, system: str, user: str, temperature: float, max_tokens: int

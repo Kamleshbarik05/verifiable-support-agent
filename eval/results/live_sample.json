@@ -1,0 +1,86 @@
+{
+  "benchmark": "live_model_evaluation",
+  "timestamp": "2026-11-23T12:32:50.377055+00:00",
+  "git_commit": "fa422c02bf8e0d1f02d91de8bbe3968a8b9d6d48",
+  "sample_size": 30,
+  "sample_size_note": "Sample size n=30 is small; reported confidence intervals reflect sampling uncertainty.",
+  "model_name": "gemini-3.5-flash",
+  "model_architecture_note": "Drafter and Judge agents both use the Gemini model family.",
+  "pricing_metadata": {
+    "source_url": "https://ai.google.dev/pricing",
+    "effective_date": "2026-11-23"
+  },
+  "rates": {
+    "judge_pass_rate": {
+      "value": 90.0,
+      "ci_lower": 74.4,
+      "ci_upper": 96.5
+    },
+    "escalation_recall": {
+      "value": 100.0,
+      "ci_lower": 61.0,
+      "ci_upper": 100.0
+    },
+    "escalation_precision": {
+      "value": 21.4,
+      "ci_lower": 10.2,
+      "ci_upper": 39.5
+    },
+    "hallucinated_url_rate": {
+      "value": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 11.4
+    },
+    "intent_accuracy": {
+      "value": 83.3,
+      "ci_lower": 66.4,
+      "ci_upper": 92.7
+    }
+  },
+  "latency_ms": {
+    "p50_total": 3.85,
+    "p95_total": 24195.72,
+    "p50_by_step": {
+      "triage": 0.25,
+      "total_orchestrator": 3.62,
+      "retrieval": 2.27,
+      "draft_revision_0": 0.29,
+      "policy_guard_pass_0": 0.07,
+      "critic_pass_0": 0.59,
+      "draft_revision_1": 0.05,
+      "policy_guard_pass_1": 0.04,
+      "critic_pass_1": 0.11,
+      "draft_revision_2": 0.03,
+      "policy_guard_pass_2": 0.04,
+      "critic_pass_2": 0.1
+    },
+    "p95_by_step": {
+      "triage": 0.38,
+      "total_orchestrator": 24195.49,
+      "retrieval": 3.04,
+      "draft_revision_0": 23359.41,
+      "policy_guard_pass_0": 0.24,
+      "critic_pass_0": 19590.6,
+      "draft_revision_1": 29462.26,
+      "policy_guard_pass_1": 0.06,
+      "critic_pass_1": 0.13,
+      "draft_revision_2": 0.06,
+      "policy_guard_pass_2": 0.05,
+      "critic_pass_2": 0.11
+    }
+  },
+  "tokens": {
+    "mean_input_tokens": 186.9,
+    "mean_output_tokens": 46.3,
+    "tokens_per_second": 11.79
+  },
+  "cost_usd": {
+    "mean_per_request": 1.8e-05,
+    "total_batch_cost": 0.000545
+  },
+  "revision_distribution": {
+    "0_revisions_pct": 86.7,
+    "1_revision_pct": 3.3,
+    "2_or_more_revisions_pct": 0.0
+  }
+}

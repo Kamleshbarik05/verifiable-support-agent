@@ -20,7 +20,7 @@ import os
 
 # Default model for live Google AI Studio execution
 # Verified available via Google AI Studio API key
-DEFAULT_LIVE_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+DEFAULT_LIVE_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
 
 # Target deployment model on Google Cloud Vertex AI
 # Note: Target architecture specification; never executed against live Vertex AI.
