@@ -160,5 +160,5 @@ python demo.py
 ---
 
 ## 📄 Documentation Links
-- **[Comprehensive Technical Report (`REPORT.md`)](file:///d:/SDE%20Assignment/REPORT.md):** Detailed problem framing, baseline analysis, top 5 failure modes with real examples, and the mandatory *"What is misleading about my headline number?"* section.
-- **[Decision Log (`DECISION_LOG.md`)](file:///d:/SDE%20Assignment/DECISION_LOG.md):** 14 architectural trade-offs made during development.
+- **[Comprehensive Technical Report (`REPORT.md`)](../../docs/REPORT.md):** Detailed problem framing, baseline analysis, top 5 failure modes with real examples, and the mandatory *"What is misleading about my headline number?"* section.
+- **[Decision Log (`DECISION_LOG.md`)](../../docs/DECISION_LOG.md):** 14 architectural trade-offs made during development.

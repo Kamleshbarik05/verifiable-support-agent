@@ -1,5 +1,7 @@
 # Google Cloud Platform Deployment Runbook
 
+> **Note: Documentation only, not executed.** This runbook specifies the target cloud provisioning and deployment procedures for Google Cloud Run and Cloud SQL. These steps have not yet been executed against a live GCP production project.
+
 Complete step-by-step guide to provisioning, deploying, and verifying the Verifiable Support Agent on Google Cloud Platform.
 
 ---

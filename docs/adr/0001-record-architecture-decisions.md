@@ -4,13 +4,13 @@
 Accepted
 
 ## Context
-As we evolve `verifiable-support-agent` from a v1 prototype (single-script pipeline) into a v2 production-grade multi-agent system on Google Cloud Platform, the system architecture introduces significant complexity:
+As we evolve `verifiable-support-agent` from a v1 prototype (single-script pipeline) into a v2 multi-agent system designed for Google Cloud Platform target deployment, the system architecture introduces significant complexity:
 - Multi-agent orchestration patterns (Google ADK, hierarchical delegation, self-reflection).
 - Vector retrieval architectures (Cloud SQL pgvector vs. Vertex AI Vector Search vs. FAISS).
 - Deterministic guardrails vs. LLM-based policy checks.
 - Observability and cost modeling (OpenTelemetry, Cloud Trace, per-step token metrics).
 
-To ensure every technical trade-off is defensible during customer discovery sessions and technical interviews (specifically for Google Cloud Forward Deployed Engineer roles), we need a standardized, version-controlled mechanism to document architectural choices.
+To ensure every technical trade-off is well-grounded and defensible across development and operational reviews, we need a standardized, version-controlled mechanism to document architectural choices.
 
 ## Decision
 We will use **Architecture Decision Records (ADRs)** following Michael Nygard's structure.
@@ -25,8 +25,8 @@ We will use **Architecture Decision Records (ADRs)** following Michael Nygard's 
 ## Consequences
 
 ### Positive
-- **Traceability:** Establishes a direct audit trail connecting stakeholder discovery findings (`docs/discovery.md`) to codebase implementation.
-- **Interview Defense:** Provides a structured reference sheet for answering deep architectural questions regarding why specific cloud patterns, vector indexes, and agent topologies were selected.
+- **Traceability:** Establishes a direct audit trail connecting problem framing and requirements analysis (`docs/discovery.md`) to codebase implementation.
+- **Technical Defensibility:** Provides a structured reference explaining why specific cloud patterns, vector indexes, and agent topologies were selected.
 - **Decoupled Evolution:** Enables confident refactoring without losing historical context on why constraints exist.
 
 ### Negative / Trade-offs

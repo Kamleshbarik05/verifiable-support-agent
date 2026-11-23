@@ -1,14 +1,13 @@
-# Verifiable Support Agent v2 — Autonomous Multi-Agent Support on Google Cloud
+# Verifiable Support Agent v2 — Multi-Agent Support Triage & Grounded Resolution
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://img.shields.io/badge/tests-37%20passed-brightgreen.svg)]()
+[![CI](https://github.com/Kamleshbarik05/verifiable-support-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/Kamleshbarik05/verifiable-support-agent/actions/workflows/ci.yml)
 [![Ruff Lint](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![OpenTelemetry](https://img.shields.io/badge/tracing-OpenTelemetry-blueviolet.svg)](https://opentelemetry.io/)
-[![Google Cloud Run](https://img.shields.io/badge/deployed-Cloud%20Run-4285F4.svg)](https://cloud.google.com/run)
 [![pgvector](https://img.shields.io/badge/vector%20db-pgvector-336791.svg)](https://github.com/pgvector/pgvector)
 
-> **A Production-Grade Multi-Agent Support Triage & Grounded Resolution Platform on Google Cloud Platform (GCP) with pgvector, OpenTelemetry Distributed Tracing, Deterministic URL Allowlisting, and Bounded Self-Reflection Loops.**
+> **Multi-agent customer support triage and grounded resolution architecture with pgvector retrieval, OpenTelemetry distributed tracing, deterministic URL allowlisting, and bounded self-reflection.**
 
 ---
 
@@ -16,7 +15,7 @@
 
 In enterprise customer support, generating plausible conversational text is trivial; **proving that an autonomous AI agent can be trusted in production is the core engineering challenge**. When deploying LLMs on public customer channels (such as `@AppleSupport` on Twitter/X), autonomous models frequently generate hallucinated warranty policies, fabricate non-existent support URLs, leak customer PII, or fail to escalate physical hardware hazards (e.g., swollen smoking batteries) to human specialists.
 
-Based on technical discovery sessions documented in [`docs/discovery.md`](docs/discovery.md), **`verifiable-support-agent v2`** replaces brittle, single-prompt LLM wrappers with a **hierarchical multi-agent architecture (Google ADK)** backed by **dense semantic vector retrieval (`pgvector` on Cloud SQL)**, **deterministic guardrail firewalls**, and **OpenTelemetry distributed tracing**.
+Based on problem framing and domain requirements documented in [`docs/discovery.md`](docs/discovery.md), **`verifiable-support-agent v2`** replaces brittle, single-prompt LLM wrappers with a **hierarchical multi-agent architecture (Google ADK)** backed by **dense semantic vector retrieval (`pgvector` on Cloud SQL)**, **deterministic guardrail firewalls**, and **OpenTelemetry distributed tracing**.
 
 ---
 
@@ -66,32 +65,69 @@ flowchart TD
 
 ## 📊 Benchmark Audit & Verified Results
 
-All numbers below are extracted directly from machine-generated JSON benchmarks in [`eval/results/`](eval/results/) using `make report`.
+All metrics below are generated from frozen evaluation artifacts in [`eval/results/`](eval/results/) using `make report`.
 
-| Evaluation Dimension | v1 Monolithic Baseline | v2 ADK Multi-Agent | Delta (v2 - v1) | Source JSON |
+### Block 1: Golden Evaluation Set (200 Samples — Offline Deterministic Mode)
+
+| Evaluation Metric | v1 Baseline (Monolithic) | v2 Multi-Agent (Google ADK) | Delta (v2 - v1) | Evaluation Mode & Provenance |
 |---|---|---|---|---|
-| **Intent Macro-F1** | `0.8734` | `0.8734` | `+0.0000` | [`e2e_v2.json`](eval/results/e2e_v2.json) |
-| **Escalation Recall** | `87.5%` | `87.5%` | `+0.0%` | [`e2e_v2.json`](eval/results/e2e_v2.json) |
-| **Escalation FNR (Safety Liability)** | `12.5%` | `12.5%` | `+0.0%` | [`e2e_v2.json`](eval/results/e2e_v2.json) |
-| **Hallucinated URL Rate** | `0.0%` | **`0.0%`** | `+0.0%` | [`e2e_v2.json`](eval/results/e2e_v2.json) |
-| **Retrieval Recall@1** | `11.0%` | **`71.0%`** | **`+60.0%`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
-| **Retrieval Recall@3** | `35.0%` | **`86.0%`** | **`+51.0%`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
-| **Mean Reciprocal Rank (MRR)** | `0.248` | **`0.783`** | **`+0.535`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
-| **Median Inference Latency ($p50$)** | `3.16 ms` | **`1.76 ms`** | **`-1.40 ms`** | [`latency_cost.json`](eval/results/latency_cost.json) |
-| **Tail Latency ($p95$)** | `5.16 ms` | **`2.90 ms`** | **`-2.26 ms`** | [`latency_cost.json`](eval/results/latency_cost.json) |
-| **Mean Cost per Request** | `$0.000000` | **`$0.000005`** | `+$0.000005` | [`latency_cost.json`](eval/results/latency_cost.json) |
-| **1-Pass Direct Approvals** | N/A | **`97.0%`** | N/A | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **Intent Macro-F1** | `0.8734` | `0.8734` | `+0.0000` | Offline mock (`eval/results/e2e_v2.json`) |
+| **Escalation Recall** | `87.5%` | `87.5%` | `+0.0%` | Offline mock (`eval/results/e2e_v2.json`) |
+| **Escalation Precision** | `28.0%` | `19.4%` | `-8.6%` | Offline mock (`eval/results/e2e_v2.json`) |
+| **Escalation FNR (Safety Liability)** | `12.5%` | `12.5%` | `+0.0%` | Offline mock (`eval/results/e2e_v2.json`) |
+| **Hallucinated URL Rate** | `0.0%` | **`0.0%`** | `+0.0%` | Deterministic allowlist (`eval/results/e2e_v2.json`) |
+| **Judge Pass Rate** | `100.0%` | `100.0%` | `+0.0%` | Offline mock judge, not an LLM evaluation (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Escalation)** | `0.6935` | `0.6935` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Safety)** | `1.0000` | `1.0000` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
 
-### Step-by-Step Latency Breakdown ($p50$ / $p95$)
-- **Triage (Intent Classification & Risk Gates):** $0.12\text{ ms}$ / $0.23\text{ ms}$
-- **Retrieval (`pgvector` HNSW Cosine Search):** $1.44\text{ ms}$ / $2.24\text{ ms}$ *(Primary operational cost)*
-- **Drafting (Grounded Synthesis & Citation):** $0.03\text{ ms}$ / $0.13\text{ ms}$
-- **PolicyGuard (URL Allowlist & PII Regex):** $0.03\text{ ms}$ / $0.06\text{ ms}$
-- **Critic (Multi-Dimensional Rubric Grading):** $0.07\text{ ms}$ / $0.18\text{ ms}$
+- **Escalation Trade-off:** The system enforces an asymmetric safety priority: maximizing recall (87.5%) to guarantee hazardous hardware incidents (battery swelling/smoke) are never missed, trading off precision (19.4%) since reviewing false alarms is operationally cheap compared to catastrophic liability.
+- **Escalation Baseline:** The False Negative Rate dropped from 88.0% (naive keyword baseline) to 12.5% in v1; v2 preserves this 12.5% safety rate across multi-agent handoffs.
+- **URL Safeguards:** v1 and v2 both scored 0.0% hallucinated URLs on the golden set; v2 adds a deterministic domain allowlist and citation verification firewall as an architectural guarantee.
 
 ---
 
-## ☁️ Google Cloud Platform Deployment Topology
+### Block 2: Vector Retrieval A/B Benchmark (100 Samples — HNSW Cosine vs Keyword Search)
+
+| Retrieval Metric | v1 Baseline Retrieval | v2 Dense Vector (`pgvector` / HNSW) | Delta (v2 - v1) | Source JSON |
+|---|---|---|---|---|
+| **Retrieval Recall@1** | `11.0%` | **`71.0%`** | **`+60.0%`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
+| **Retrieval Recall@3** | `35.0%` | **`86.0%`** | **`+51.0%`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
+| **Retrieval Recall@5** | `50.0%` | **`88.0%`** | **`+38.0%`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
+| **Mean Reciprocal Rank (MRR)** | `0.248` | **`0.783`** | **`+0.535`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
+| **Median Search Latency ($p50$)** | `3.75 ms` | **`1.65 ms`** | **`-2.10 ms`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
+| **Tail Search Latency ($p95$)** | `6.56 ms` | **`2.79 ms`** | **`-3.77 ms`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
+
+---
+
+### Block 3: Step Latency & Cost Telemetry (100 Samples — Offline Deterministic Mode)
+
+| Telemetry Dimension | Measured Value | Evaluation Mode | Source JSON |
+|---|---|---|---|
+| **Median Total Latency ($p50$)** | `1.76 ms` | Local offline execution (CPU) | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **Tail Total Latency ($p95$)** | `2.90 ms` | Local offline execution (CPU) | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **Mean Cost per Request** | `$0.000005` | Pricing registry model | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **1-Pass Direct Approvals** | `97.0%` | Offline mock critic pass | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **2+ Revisions Rate** | `3.0%` | Bounded self-reflection retry | [`latency_cost.json`](eval/results/latency_cost.json) |
+
+#### Step-by-Step Latency Breakdown ($p50$ / $p95$ in Offline Mode)
+- **Triage (Intent Classification & Risk Gates):** $0.12\text{ ms}$ / $0.23\text{ ms}$
+- **Retrieval (`pgvector` HNSW Cosine Search):** $1.44\text{ ms}$ / $2.24\text{ ms}$
+- **Drafting (Grounded Synthesis & Citation):** $0.03\text{ ms}$ / $0.13\text{ ms}$
+- **PolicyGuard (URL Allowlist & PII Regex):** $0.03\text{ ms}$ / $0.06\text{ ms}$
+- **Critic (QA Rubric Grading):** $0.07\text{ ms}$ / $0.18\text{ ms}$
+
+---
+
+### What These Numbers Do and Do Not Show
+
+- **What they DO show:** Verified multi-agent state delegation under bounded retry loops, deterministic Tier 1 hazard escalation, dense semantic vector retrieval recall improvements over keyword overlap, and accurate per-step token/cost accounting.
+- **What they DO NOT show:** Live cloud network latency (live LLM generation adds 300–800ms per network hop), human annotator consensus (Cohen's kappa was measured on an algorithmic 50-sample synthetic calibration dataset), or live cloud infrastructure availability (Cloud Run/SQL are target designs, not deployed).
+
+---
+
+## ☁️ Target Deployment Architecture (not deployed)
+
+> **Deployment Status:** The GCP topology outlined below represents a documented target deployment architecture that has not yet been executed or deployed to live cloud infrastructure. Unit/integration tests, in-memory pgvector emulation, offline benchmarks, and the local FastAPI server run entirely in local development environments.
 
 ```mermaid
 flowchart LR
@@ -151,6 +187,9 @@ make eval-latency-cost
 
 # Regenerate publication markdown report from raw JSON
 make report
+
+# (Optional) Run live model evaluation sample against Gemini API (requires GEMINI_API_KEY)
+make eval-live
 ```
 
 ---
@@ -167,23 +206,39 @@ Key architectural trade-offs are documented in compliance with architecture stan
 
 ## ⚖️ Known Limitations & Engineering Trade-offs
 
-1. **Multi-Agent Sequential Latency:** While sub-3ms in offline deterministic mode, live Vertex AI network hops add 300–800ms per LLM generation. Mitigated by short-circuiting safety escalations before any LLM call is made.
+1. **Multi-Agent Sequential Latency:** While sub-3ms in offline deterministic mode, live Gemini API network round-trips add 300–800ms per generative LLM call. Mitigated by short-circuiting Tier 1 safety escalations before invoking drafting agents.
 2. **Cloud SQL Cold Billing:** Cloud SQL bills hourly while provisioned. Addressed by authoring an automated teardown script (`deploy/teardown.sh`) and providing thread-safe in-memory cosine fallback for local dev.
-3. **100% Audit Sampling Volume:** Recording 100% of traces (`ALWAYS_ON`) incurs Cloud Trace ingestion costs at enterprise volume, accepted as a necessary trade-off for non-repudiable safety auditability.
+3. **100% Audit Sampling Volume:** Recording 100% of traces (`ALWAYS_ON`) incurs trace ingestion volume, accepted as a necessary trade-off for auditable safety tracking.
 
 ---
 
-## 📄 Verified Resume Bullets
+## 📁 Repository Layout
 
-Extract from [`docs/resume_bullets.md`](docs/resume_bullets.md):
-
-> **Support Agent v2 (Multi-Agent, GCP)** | *Python 3.11, Google ADK, Gemini (Vertex AI), pgvector, Cloud Run, Cloud Trace*  
-> - Architected a hierarchical multi-agent customer support platform (**Google ADK**, Python 3.11) governing triage, dense retrieval, grounded synthesis, policy guardrail, and critic reflection agents; enforced deterministic URL allowlisting and risk gates, **eliminating 100% of hallucinated URLs (0.0% error rate)** and maintaining **87.5% escalation recall** across a 200-sample golden evaluation benchmark.
-> - Engineered a production vector retrieval subsystem using Vertex AI `text-embedding-004` and **`pgvector` on Cloud SQL** with HNSW indexing ($m=16, \text{ef}=64$), **raising Recall@3 from 35.0% to 86.0% (+51.0%)** and **Mean Reciprocal Rank (MRR) from 0.248 to 0.783**, while reducing median search latency by 56% (3.75 ms to 1.65 ms).
-> - Containerized and deployed hardened microservices on **Google Cloud Run** (`min=0, max=2`, 512MB RAM) via GitHub Actions using **Workload Identity Federation** (keyless OIDC); integrated **OpenTelemetry distributed tracing** to **Google Cloud Trace** and granular token cost accounting, achieving **$p95$ tail latency of 2.90 ms at $\approx \$0.000005$ per request** with a **97.0% 1-pass first-time approval rate**.
-> - Conducted stakeholder discovery ([`docs/discovery.md`](docs/discovery.md)) and authored 4 Architectural Decision Records (ADRs) translating enterprise privacy, compliance, and budget constraints into deterministic two-tier risk tiers and automated Cloud Run cost-safety teardown controls.
+```
+.
+├── app/
+│   ├── agents/            # ADK sub-agents (Orchestrator, Triage, Retrieval, Draft, PolicyGuard, Critic)
+│   ├── api/               # FastAPI endpoints (/triage, /health, /metrics)
+│   ├── config.py          # Centralized model and environment configuration
+│   ├── observability/     # OpenTelemetry tracing, span sanitization, and pricing tables
+│   ├── retrieval/         # Vector store, embedder interface, and schema
+│   ├── tools/             # Deterministic tool wrappers
+│   └── v1/                # Preserved v1 baseline modules and reference code
+├── deploy/                # Dockerfile and cloud provisioning runbooks (target architecture)
+├── docs/                  # Architecture specs, requirements analysis, ADRs, and plans
+│   ├── adr/               # Architectural Decision Records (0001 - 0004)
+│   ├── architecture.md    # System architecture specification
+│   ├── discovery.md       # Problem framing & domain requirements analysis
+│   └── PLAN.md            # Master development plan
+├── eval/
+│   ├── datasets/          # Golden evaluation and calibration datasets
+│   ├── results/           # Frozen machine-readable JSON evaluation outputs
+│   └── runners/           # Benchmark runners (e2e, retrieval A/B, latency/cost, live eval)
+└── tests/                 # 37 unit and integration tests (pytest)
+```
 
 ---
 
 ## 📜 License
-MIT License. Authored for Google Cloud Forward Deployed Engineer (FDE) technical interview evaluation.
+
+MIT License. See [LICENSE](LICENSE) for details.
