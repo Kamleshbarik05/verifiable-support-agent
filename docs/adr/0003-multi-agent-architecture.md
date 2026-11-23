@@ -13,7 +13,7 @@ Enterprise customer support tickets require multiple distinct cognitive responsi
 
 In a monolithic single-prompt LLM design, instruction drift is common: the model often prioritizes conversational empathy over strict compliance, hallucinating URLs or failing to escalate hazardous hardware conditions.
 
-Furthermore, naive autonomous multi-agent choreographies (where agents pass messages peer-to-peer without centralized control) frequently suffer from circular reasoning, non-deterministic execution times, and unbounded API cost.
+Furthermore, naive multi-agent choreographies (where agents pass messages peer-to-peer without centralized control) frequently suffer from circular reasoning, non-deterministic execution times, and unbounded API cost.
 
 ## Decision
 
@@ -42,7 +42,7 @@ To enforce quality without risking runaway latency or budget exhaustion:
 
 ### Positive
 - **Predictable Cost & Latency:** Maximum 3 LLM calls per automated ticket, preventing runaway token bills.
-- **Zero Hallucinated URLs:** Deterministic allowlisting and grounding checks catch 100% of fabricated links.
+- **Ungrounded URL Protection:** Deterministic allowlisting and grounding checks catch ungrounded or fabricated links.
 - **Auditable Provenance:** Every transition, critique feedback, and citation ID is preserved in `AgentState`.
 - **Decoupled Testability:** Each sub-agent and tool can be unit-tested in complete isolation with deterministic mocks.
 

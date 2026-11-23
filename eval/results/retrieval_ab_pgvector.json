@@ -1,0 +1,40 @@
+{
+  "benchmark": "retrieval_ab_pgvector",
+  "timestamp": "2026-11-23T12:47:38.188608+00:00",
+  "git_commit": "ba4eb1cbed45bd8b87d434ac6b04e4686728657b",
+  "sample_size": 100,
+  "embedding_model": "gemini-embedding-001",
+  "dimensions": 768,
+  "backend": "In-Memory Cosine Store",
+  "index_parameters": {
+    "type": "hnsw",
+    "metric": "cosine",
+    "m": 16,
+    "ef_construction": 64
+  },
+  "held_out_query_count": 100,
+  "indexed_precedent_count": 23,
+  "v1_keyword_baseline": {
+    "recall_at_1": 0.11,
+    "recall_at_3": 0.35,
+    "recall_at_5": 0.5,
+    "mrr": 0.2478,
+    "latency_p50_ms": 3.73,
+    "latency_p95_ms": 5.19
+  },
+  "v2_vector_retrieval_real_embeddings": {
+    "recall_at_1": 0.71,
+    "recall_at_3": 0.86,
+    "recall_at_5": 0.88,
+    "mrr": 0.7833,
+    "latency_p50_ms": 1.53,
+    "latency_p95_ms": 2.76
+  },
+  "delta": {
+    "recall_at_1_diff": 0.6,
+    "recall_at_3_diff": 0.51,
+    "recall_at_5_diff": 0.38,
+    "mrr_diff": 0.5355,
+    "p50_latency_diff_ms": -2.2
+  }
+}

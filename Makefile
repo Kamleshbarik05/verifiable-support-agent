@@ -41,6 +41,9 @@ eval-v2:
 eval-retrieval:
 	$(PYTHON) eval/runners/retrieval_eval.py --sample-size 100 --output eval/results/retrieval_ab.json
 
+eval-retrieval-pgvector:
+	$(PYTHON) eval/runners/retrieval_pgvector_eval.py --samples 100
+
 eval-compare:
 	$(PYTHON) eval/runners/compare_eval.py
 
@@ -48,7 +51,7 @@ eval-latency-cost:
 	$(PYTHON) eval/runners/latency_cost_eval.py --sample-size 100 --output eval/results/latency_cost.json
 
 eval-live:
-	$(PYTHON) eval/runners/live_eval.py --samples 30 --delay 2.0
+	$(PYTHON) eval/runners/live_eval.py --samples 30 --delay 0.5
 
 report:
 	$(PYTHON) eval/runners/generate_report.py

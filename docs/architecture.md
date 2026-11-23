@@ -78,7 +78,7 @@ flowchart TD
 - **PII Filter:** Regex detection and redaction of emails and phone numbers.
 
 ### 3.5 Observability & Distributed Tracing (`app/observability/*`)
-- **OpenTelemetry Standard:** Vendor-neutral tracing exported to Google Cloud Trace on GCP and formatted console/in-memory locally.
+- **OpenTelemetry Standard:** Vendor-neutral tracing exported to local OpenTelemetry collectors (Jaeger/console) locally, with Google Cloud Trace as target deployment architecture.
 - **100% Uniform Trace Sampling (`ALWAYS_ON`):** Every customer inquiry and safety escalation is audited.
 - **GCP Trace Correlation:** Logs emit `logging.googleapis.com/trace` matching W3C TraceContext headers.
 - **Cost Attribution:** Tracks token consumption and calculates exact USD costs per step via versioned Vertex AI pricing tables.

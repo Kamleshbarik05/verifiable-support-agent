@@ -23,6 +23,7 @@ python-dotenv>=1.0.0
 # Distributed Tracing & OpenTelemetry Observability
 opentelemetry-api>=1.20.0
 opentelemetry-sdk>=1.20.0
+opentelemetry-exporter-otlp-proto-http>=1.20.0
 
 # Statistical Evaluation & Inter-Annotator Agreement
 scipy>=1.11.0

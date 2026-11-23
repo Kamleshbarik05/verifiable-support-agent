@@ -34,6 +34,15 @@ PRICING_REGISTRY: dict[str, ModelPricing] = {
         effective_date="2026-11-23",
         source_url="https://ai.google.dev/pricing",
     ),
+    # Gemini 3.5 Flash (Live AI Studio, verified 2026-11-23)
+    "gemini-3.5-flash": ModelPricing(
+        model_id="gemini-3.5-flash",
+        provider="google-ai-studio",
+        input_cost_per_million=0.075,
+        output_cost_per_million=0.30,
+        effective_date="2026-11-23",
+        source_url="https://ai.google.dev/pricing",
+    ),
     # Gemini 1.5 Flash (General GA tier: <=128k context, Vertex target, verified 2026-11-23)
     "gemini-1.5-flash-002": ModelPricing(
         model_id="gemini-1.5-flash-002",

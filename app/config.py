@@ -20,7 +20,7 @@ import os
 
 # Default model for live Google AI Studio execution
 # Verified available via Google AI Studio API key
-DEFAULT_LIVE_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+DEFAULT_LIVE_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
 
 # Target deployment model on Google Cloud Vertex AI
 # Note: Target architecture specification; never executed against live Vertex AI.
@@ -29,6 +29,9 @@ VERTEX_TARGET_MODEL: str = os.getenv("VERTEX_MODEL", "gemini-1.5-flash-002")
 # Target text embedding model on Google Cloud Vertex AI (768 dimensions)
 # Note: Target architecture specification; never executed against live Vertex AI.
 VERTEX_EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-004")
+
+# Live embedding model supported by Google AI Studio API key
+AI_STUDIO_EMBEDDING_MODEL: str = os.getenv("AI_STUDIO_EMBEDDING_MODEL", "gemini-embedding-001")
 
 # Offline mock model identifier used for zero-cost, deterministic local evaluation
 OFFLINE_MOCK_MODEL: str = "offline-mock"

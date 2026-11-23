@@ -139,7 +139,7 @@ class VertexAIEmbedder(Embedder):
                 model=self._model_name,
                 contents=text,
             )
-            embedding = response.embedding.values
+            embedding = response.embeddings[0].values
             # Ensure unit normalization
             vec = np.array(embedding, dtype=np.float32)
             norm = np.linalg.norm(vec)
@@ -171,9 +171,89 @@ class VertexAIEmbedder(Embedder):
             return self._fallback.embed_batch(texts)
 
 
+class GoogleAIStudioEmbedder(Embedder):
+    """
+    Google AI Studio Embedder.
+    Calls gemini-embedding-001 with 768-dimensional output via Google GenAI SDK.
+    Falls back to LocalFallbackEmbedder if API key is absent.
+    """
+
+    def __init__(
+        self,
+        model_name: str = "gemini-embedding-001",
+        dimension: int = 768,
+    ):
+        self._model_name = model_name
+        self._dim = dimension
+        self._fallback = LocalFallbackEmbedder(dimension=dimension)
+        self._client = None
+        self._init_client()
+
+    def _init_client(self):
+        try:
+            from google import genai
+            self._client = genai.Client()
+        except Exception:
+            self._client = None
+
+    @property
+    def dimension(self) -> int:
+        return self._dim
+
+    @property
+    def model_name(self) -> str:
+        return self._model_name
+
+    def embed_text(self, text: str) -> list[float]:
+        if not self._client:
+            return self._fallback.embed_text(text)
+
+        try:
+            from google.genai import types
+            config = types.EmbedContentConfig(output_dimensionality=self._dim)
+            response = self._client.models.embed_content(
+                model=self._model_name,
+                contents=text,
+                config=config,
+            )
+            embedding = response.embeddings[0].values
+            vec = np.array(embedding, dtype=np.float32)
+            norm = np.linalg.norm(vec)
+            if norm > 0:
+                vec = vec / norm
+            return vec.tolist()
+        except Exception:
+            return self._fallback.embed_text(text)
+
+    def embed_batch(self, texts: list[str]) -> list[list[float]]:
+        if not self._client:
+            return self._fallback.embed_batch(texts)
+
+        try:
+            from google.genai import types
+            config = types.EmbedContentConfig(output_dimensionality=self._dim)
+            response = self._client.models.embed_content(
+                model=self._model_name,
+                contents=texts,
+                config=config,
+            )
+            results = []
+            for emb in response.embeddings:
+                vec = np.array(emb.values, dtype=np.float32)
+                norm = np.linalg.norm(vec)
+                if norm > 0:
+                    vec = vec / norm
+                results.append(vec.tolist())
+            return results
+        except Exception:
+            return self._fallback.embed_batch(texts)
+
+
 def get_embedder(provider: str | None = None) -> Embedder:
     """Factory creating configured Embedder instance."""
     prov = (provider or os.getenv("EMBEDDER_PROVIDER", "local")).strip().lower()
     if prov in ("vertex", "vertexai", "gcp"):
         return VertexAIEmbedder()
+    if prov in ("gemini", "ai_studio", "google"):
+        return GoogleAIStudioEmbedder()
     return LocalFallbackEmbedder()
