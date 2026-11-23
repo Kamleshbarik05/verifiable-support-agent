@@ -10,7 +10,7 @@ As we evolve `verifiable-support-agent` from a v1 prototype (single-script pipel
 - Deterministic guardrails vs. LLM-based policy checks.
 - Observability and cost modeling (OpenTelemetry, Cloud Trace, per-step token metrics).
 
-To ensure every technical trade-off is defensible during customer discovery sessions and technical interviews (specifically for Google Cloud Forward Deployed Engineer roles), we need a standardized, version-controlled mechanism to document architectural choices.
+To ensure every technical trade-off is well-grounded and defensible across development and operational reviews, we need a standardized, version-controlled mechanism to document architectural choices.
 
 ## Decision
 We will use **Architecture Decision Records (ADRs)** following Michael Nygard's structure.
@@ -26,7 +26,7 @@ We will use **Architecture Decision Records (ADRs)** following Michael Nygard's 
 
 ### Positive
 - **Traceability:** Establishes a direct audit trail connecting problem framing and requirements analysis (`docs/discovery.md`) to codebase implementation.
-- **Interview Defense:** Provides a structured reference sheet for answering deep architectural questions regarding why specific cloud patterns, vector indexes, and agent topologies were selected.
+- **Technical Defensibility:** Provides a structured reference explaining why specific cloud patterns, vector indexes, and agent topologies were selected.
 - **Decoupled Evolution:** Enables confident refactoring without losing historical context on why constraints exist.
 
 ### Negative / Trade-offs

@@ -2,7 +2,7 @@
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://img.shields.io/badge/tests-37%20passed-brightgreen.svg)]()
+[![CI](https://github.com/Kamleshbarik05/verifiable-support-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/Kamleshbarik05/verifiable-support-agent/actions/workflows/ci.yml)
 [![Ruff Lint](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![OpenTelemetry](https://img.shields.io/badge/tracing-OpenTelemetry-blueviolet.svg)](https://opentelemetry.io/)
 [![pgvector](https://img.shields.io/badge/vector%20db-pgvector-336791.svg)](https://github.com/pgvector/pgvector)
@@ -174,17 +174,6 @@ Key architectural trade-offs are documented in compliance with architecture stan
 
 ---
 
-## 📄 Verified Resume Bullets
-
-Extract from [`docs/resume_bullets.md`](docs/resume_bullets.md):
-
-> **Support Agent v2 (Multi-Agent, GCP)** | *Python 3.11, Google ADK, Gemini (Vertex AI), pgvector, Cloud Run, Cloud Trace*  
-> - Architected a hierarchical multi-agent customer support platform (**Google ADK**, Python 3.11) governing triage, dense retrieval, grounded synthesis, policy guardrail, and critic reflection agents; enforced deterministic URL allowlisting and risk gates, **eliminating 100% of hallucinated URLs (0.0% error rate)** and maintaining **87.5% escalation recall** across a 200-sample golden evaluation benchmark.
-> - Engineered a production vector retrieval subsystem using Vertex AI `text-embedding-004` and **`pgvector` on Cloud SQL** with HNSW indexing ($m=16, \text{ef}=64$), **raising Recall@3 from 35.0% to 86.0% (+51.0%)** and **Mean Reciprocal Rank (MRR) from 0.248 to 0.783**, while reducing median search latency by 56% (3.75 ms to 1.65 ms).
-> - Containerized and deployed hardened microservices on **Google Cloud Run** (`min=0, max=2`, 512MB RAM) via GitHub Actions using **Workload Identity Federation** (keyless OIDC); integrated **OpenTelemetry distributed tracing** to **Google Cloud Trace** and granular token cost accounting, achieving **$p95$ tail latency of 2.90 ms at $\approx \$0.000005$ per request** with a **97.0% 1-pass first-time approval rate**.
-> - Conducted stakeholder discovery ([`docs/discovery.md`](docs/discovery.md)) and authored 4 Architectural Decision Records (ADRs) translating enterprise privacy, compliance, and budget constraints into deterministic two-tier risk tiers and automated Cloud Run cost-safety teardown controls.
-
----
-
 ## 📜 License
-MIT License. Authored for Google Cloud Forward Deployed Engineer (FDE) technical interview evaluation.
+
+MIT License. See [LICENSE](LICENSE) for details.

@@ -21,3 +21,6 @@ data/.llm_cache.json
 app/v1/data/.llm_cache.json
 .DS_Store
 Thumbs.db
+
+# Private notes
+docs/resume_bullets.md
