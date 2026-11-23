@@ -26,7 +26,7 @@ _orchestrator = OrchestratorAgent()
 def resolve_support_ticket(customer_query: str) -> dict:
     """Evaluates customer support query through the full multi-agent hierarchy with grounding and guardrails."""
     state = _orchestrator.process_ticket(customer_query)
-    
+
     if state.should_escalate:
         reply = (
             f"Your request has been routed to our senior specialized support team ({state.escalation_tier}). "

@@ -20,6 +20,7 @@ exclude = [
     ".git",
     "__pycache__",
     ".pytest_cache",
+    "adk_agent",
 ]
 
 [tool.ruff.lint]
