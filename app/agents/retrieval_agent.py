@@ -7,6 +7,7 @@ import time
 
 from app.agents.base import BaseAgent
 from app.agents.state import AgentState, GroundedCase
+from app.config import VERTEX_EMBEDDING_MODEL
 from app.observability.telemetry import estimate_tokens, record_agent_step_telemetry
 from app.tools.retrieval_tools import search_resolutions_tool
 
@@ -59,7 +60,7 @@ class RetrievalAgent(BaseAgent):
             latency_ms=elapsed_ms,
             input_tokens=in_tok,
             output_tokens=0,
-            model_name="text-embedding-004",
+            model_name=VERTEX_EMBEDDING_MODEL,
             extra_span_attributes={
                 "retrieved_count": len(cases),
                 "max_similarity": state.max_retrieval_similarity,

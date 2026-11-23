@@ -14,6 +14,8 @@ from abc import ABC, abstractmethod
 
 import numpy as np
 
+from app.config import VERTEX_EMBEDDING_MODEL
+
 
 class Embedder(ABC):
     """Abstract interface for dense text embedding generation."""
@@ -97,7 +99,7 @@ class VertexAIEmbedder(Embedder):
         self,
         project_id: str | None = None,
         location: str = "us-central1",
-        model_name: str = "text-embedding-004",
+        model_name: str = VERTEX_EMBEDDING_MODEL,
         dimension: int = 768,
     ):
         self._project_id = project_id or os.getenv("PROJECT_ID")
