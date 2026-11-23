@@ -30,25 +30,25 @@ flowchart TD
 
     subgraph TriageGate ["Phase 1: Risk & Intent Gate"]
         Orchestrator --> TriageAgent["TriageAgent (Intent Classifier & Risk Gates)"]
-        TriageAgent -->|Swollen Battery / Legal Threat / PII| FastEscalate["Short-Circuit Escalation (Tier 1/2)"]
+        TriageAgent -->|"Swollen Battery / Legal Threat / PII"| FastEscalate["Short-Circuit Escalation (Tier 1/2)"]
     end
 
     subgraph GroundingPhase ["Phase 2: Semantic Grounding"]
-        TriageAgent -->|Standard Diagnostic Query| RetrievalAgent["RetrievalAgent (Dense Vector Search)"]
-        RetrievalAgent --> CloudSQL[(Cloud SQL / pgvector\nHNSW Cosine Index)]
-        RetrievalAgent --> QualityGate{"Grounding Quality Gate\n(Similarity >= 0.50?)"}
-        QualityGate -->|Similarity < 0.50 (No Precedent)| HallucinationEscalate["Escalate to Human (Prevent Hallucination)"]
+        TriageAgent -->|"Standard Diagnostic Query"| RetrievalAgent["RetrievalAgent (Dense Vector Search)"]
+        RetrievalAgent --> CloudSQL[("Cloud SQL / pgvector<br>HNSW Cosine Index")]
+        RetrievalAgent --> QualityGate{"Grounding Quality Gate<br>Similarity >= 0.50?"}
+        QualityGate -->|"Low Similarity (< 0.50)"| HallucinationEscalate["Escalate to Human (Prevent Hallucination)"]
     end
 
     subgraph ReflectionLoop ["Phase 3: Bounded Self-Reflection Loop (Max 2 Retries)"]
-        QualityGate -->|Similarity >= 0.50| DraftAgent["DraftAgent (Grounded LLM Synthesis)"]
+        QualityGate -->|"Grounded (Similarity >= 0.50)"| DraftAgent["DraftAgent (Grounded LLM Synthesis)"]
         DraftAgent --> PolicyGuard["PolicyGuard (Deterministic URL & PII Firewall)"]
-        PolicyGuard -->|Policy Violation (Ungrounded Link)| DraftAgent
-        PolicyGuard -->|Policy Passed| CriticAgent["CriticAgent (Multi-Dimensional QA Rubric)"]
-        CriticAgent -->|Score < 4 (Targeted Feedback)| DraftAgent
+        PolicyGuard -->|"Policy Violation (Ungrounded Link)"| DraftAgent
+        PolicyGuard -->|"Policy Passed"| CriticAgent["CriticAgent (Multi-Dimensional QA Rubric)"]
+        CriticAgent -->|"Score < 4 (Targeted Feedback)"| DraftAgent
     end
 
-    CriticAgent -->|Approved (Groundedness >= 4)| VerifiedResponse["Verified Response Payload\n(Cited IDs, OTel Trace, Step Metrics)"]
+    CriticAgent -->|"Approved (Groundedness >= 4)"| VerifiedResponse["Verified Response Payload<br>(Cited IDs, OTel Trace, Step Metrics)"]
 ```
 
 ### Specialized Sub-Agents

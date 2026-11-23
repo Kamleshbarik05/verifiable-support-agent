@@ -19,31 +19,31 @@ flowchart TD
     
     subgraph TriagePhase ["Phase 1: Risk & Intent Gate"]
         Orchestrator --> TriageAgent["TriageAgent (Intent Classifier & Tier 1/2 Risk Gates)"]
-        TriageAgent -->|Hard Safety / Legal / Financial Risk| EscalateFast["Short-Circuit Human Escalation (Tier 1/2)"]
+        TriageAgent -->|"Hard Safety / Legal / Financial Risk"| EscalateFast["Short-Circuit Human Escalation (Tier 1/2)"]
     end
 
     subgraph GroundingPhase ["Phase 2: Semantic Retrieval"]
-        TriageAgent -->|Standard Diagnostic Query| RetrievalAgent["RetrievalAgent (Dense Vector Search)"]
-        RetrievalAgent --> VectorDB[(pgvector on Cloud SQL / Local Store\nHNSW Cosine Index)]
-        RetrievalAgent --> QualityGate{"Grounding Quality Gate\n(Similarity >= 0.50?)"}
-        QualityGate -->|No Precedent / Similarity < 0.50| EscalateHallucination["Escalate to Human (Avoid Hallucination)"]
+        TriageAgent -->|"Standard Diagnostic Query"| RetrievalAgent["RetrievalAgent (Dense Vector Search)"]
+        RetrievalAgent --> VectorDB[("pgvector on Cloud SQL / Local Store<br>HNSW Cosine Index")]
+        RetrievalAgent --> QualityGate{"Grounding Quality Gate<br>Similarity >= 0.50?"}
+        QualityGate -->|"No Precedent / Similarity < 0.50"| EscalateHallucination["Escalate to Human (Avoid Hallucination)"]
     end
 
     subgraph ReflectionPhase ["Phase 3: Bounded Self-Reflection Loop (Max 2 Retries)"]
-        QualityGate -->|Grounded Cases Found| DraftAgent["DraftAgent (Grounded LLM Synthesis)"]
+        QualityGate -->|"Grounded Cases Found"| DraftAgent["DraftAgent (Grounded LLM Synthesis)"]
         DraftAgent --> PolicyGuard["PolicyGuard (Deterministic Firewall & URL Allowlist)"]
         
-        PolicyGuard -->|Policy Violation (PII / Unverified URL)| PolicyFail{"Max Retries\nExhausted?"}
-        PolicyFail -->|No| DraftAgent
-        PolicyFail -->|Yes| HardEscalate["Hard Human Escalation (Safety Firewall)"]
+        PolicyGuard -->|"Policy Violation (PII / Unverified URL)"| PolicyFail{"Max Retries<br>Exhausted?"}
+        PolicyFail -->|"No"| DraftAgent
+        PolicyFail -->|"Yes"| HardEscalate["Hard Human Escalation (Safety Firewall)"]
         
-        PolicyGuard -->|Passed Policy| CriticAgent["CriticAgent (Multi-Dimensional QA Rubric)"]
-        CriticAgent -->|Score < Threshold| CriticFail{"Max Retries\nExhausted?"}
-        CriticFail -->|No (Targeted Feedback)| DraftAgent
-        CriticFail -->|Yes| EscalateQA["Escalate to Human (Quality Standards)"]
+        PolicyGuard -->|"Passed Policy"| CriticAgent["CriticAgent (Multi-Dimensional QA Rubric)"]
+        CriticAgent -->|"Score < Threshold"| CriticFail{"Max Retries<br>Exhausted?"}
+        CriticFail -->|"No (Targeted Feedback)"| DraftAgent
+        CriticFail -->|"Yes"| EscalateQA["Escalate to Human (Quality Standards)"]
     end
 
-    CriticAgent -->|Approved (Groundedness >= 4)| FinalResponse["Verified Response Payload\n(Cited IDs, OTel Trace, Cost Telemetry)"]
+    CriticAgent -->|"Approved (Groundedness >= 4)"| FinalResponse["Verified Response Payload<br>(Cited IDs, OTel Trace, Cost Telemetry)"]
 ```
 
 ---
