@@ -76,10 +76,10 @@ def scan_for_pii(text: str) -> dict:
 try:
     from google.adk.agents import Agent
 
-    adk_model = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
-    # If GEMINI_MODEL was set to gemini-1.5-flash-002 (Vertex AI specific name), default to gemini-2.0-flash for AI Studio API
-    if "002" in adk_model or adk_model == "gemini-1.5-flash":
-        adk_model = "gemini-2.0-flash"
+    adk_model = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+    # If GEMINI_MODEL was set to legacy models, default to gemini-3.8-flash as recommended by Gemini API
+    if any(k in adk_model for k in ["002", "1.5", "2.0"]):
+        adk_model = "gemini-3.8-flash"
 
     root_agent = Agent(
         name="verifiable_support_agent",

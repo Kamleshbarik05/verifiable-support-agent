@@ -11,6 +11,8 @@ env/
 venv/
 
 # Local cache & temporary test files
+.adk/
+*.db
 .pytest_cache/
 .ruff_cache/
 .coverage
