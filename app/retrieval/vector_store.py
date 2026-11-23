@@ -270,3 +270,14 @@ class VectorStore:
             except Exception:
                 pass
         return len(self._in_memory_records)
+
+
+_default_store: VectorStore | None = None
+
+
+def get_vector_store() -> VectorStore:
+    """Returns singleton VectorStore instance."""
+    global _default_store
+    if _default_store is None:
+        _default_store = VectorStore()
+    return _default_store

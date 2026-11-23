@@ -7,6 +7,7 @@ import time
 
 from app.agents.base import BaseAgent
 from app.agents.state import AgentState, GroundedCase
+from app.observability.telemetry import estimate_tokens, record_agent_step_telemetry
 from app.tools.retrieval_tools import search_resolutions_tool
 
 
@@ -50,5 +51,18 @@ class RetrievalAgent(BaseAgent):
         state.retrieved_cases = cases
         state.max_retrieval_similarity = cases[0].similarity_score if cases else 0.0
 
-        state.step_timings_ms["retrieval"] = round((time.perf_counter() - t0) * 1000.0, 2)
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        in_tok = estimate_tokens(state.customer_query)
+        record_agent_step_telemetry(
+            state=state,
+            step_name="retrieval",
+            latency_ms=elapsed_ms,
+            input_tokens=in_tok,
+            output_tokens=0,
+            model_name="text-embedding-004",
+            extra_span_attributes={
+                "retrieved_count": len(cases),
+                "max_similarity": state.max_retrieval_similarity,
+            },
+        )
         return state

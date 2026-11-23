@@ -105,6 +105,27 @@ def ingest_resolutions_from_df(
     }
 
 
+def ingest_resolutions(
+    csv_path: Path | str,
+    vector_store: VectorStore | None = None,
+    embedder: Embedder | None = None,
+    batch_size: int = 50,
+) -> dict[str, int]:
+    """
+    Convenience entrypoint loading paired CSV and executing batch ingestion.
+    """
+    p = Path(csv_path)
+    df = pd.read_csv(p)
+    vs = vector_store or VectorStore()
+    emb = embedder or get_embedder()
+    return ingest_resolutions_from_df(
+        df=df,
+        vector_store=vs,
+        embedder=emb,
+        batch_size=batch_size,
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(description="Ingest support resolutions into pgvector store")
     parser.add_argument(

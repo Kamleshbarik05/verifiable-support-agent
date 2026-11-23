@@ -33,6 +33,8 @@ _metrics_counters = {
     "total_requests": 0,
     "escalated_requests": 0,
     "auto_resolved_requests": 0,
+    "total_tokens": 0,
+    "total_cost_usd": 0.0,
 }
 _latencies_ms: list[float] = []
 
@@ -152,6 +154,10 @@ def triage_ticket(
         _metrics_counters["escalated_requests"] += 1
     else:
         _metrics_counters["auto_resolved_requests"] += 1
+    _metrics_counters["total_tokens"] += state.total_tokens
+    _metrics_counters["total_cost_usd"] = round(
+        _metrics_counters["total_cost_usd"] + state.total_cost_usd, 6
+    )
     _latencies_ms.append(elapsed_ms)
 
     decision = "escalate" if state.should_escalate else "draft"
@@ -171,6 +177,9 @@ def triage_ticket(
         revisions_needed=state.revision_count,
         trace_id=trace_id,
         step_latencies_ms=state.step_timings_ms,
+        step_metrics=state.step_metrics,
+        total_cost_usd=state.total_cost_usd,
+        total_tokens=state.total_tokens,
     )
 
 
@@ -184,6 +193,8 @@ def get_metrics(accept: str | None = Header(default=None)) -> Any:
     total = _metrics_counters["total_requests"]
     escalated = _metrics_counters["escalated_requests"]
     auto_resolved = _metrics_counters["auto_resolved_requests"]
+    tokens = _metrics_counters["total_tokens"]
+    cost = _metrics_counters["total_cost_usd"]
 
     p50 = round(float(np.percentile(_latencies_ms, 50)), 2) if _latencies_ms else 0.0
     p95 = round(float(np.percentile(_latencies_ms, 95)), 2) if _latencies_ms else 0.0
@@ -196,6 +207,12 @@ def get_metrics(accept: str | None = Header(default=None)) -> Any:
             f'support_agent_requests_total{{status="total"}} {total}',
             f'support_agent_requests_total{{status="escalated"}} {escalated}',
             f'support_agent_requests_total{{status="auto_resolved"}} {auto_resolved}',
+            "# HELP support_agent_tokens_total Total input and output tokens consumed",
+            "# TYPE support_agent_tokens_total counter",
+            f"support_agent_tokens_total {tokens}",
+            "# HELP support_agent_cost_usd_total Total estimated cost in USD",
+            "# TYPE support_agent_cost_usd_total counter",
+            f"support_agent_cost_usd_total {cost:.6f}",
             "# HELP support_agent_latency_ms End-to-end triage latency in milliseconds",
             "# TYPE support_agent_latency_ms gauge",
             f'support_agent_latency_ms{{quantile="0.5"}} {p50}',
@@ -211,6 +228,10 @@ def get_metrics(accept: str | None = Header(default=None)) -> Any:
             "escalated": escalated,
             "auto_resolved": auto_resolved,
             "escalation_rate": round(escalated / total, 4) if total > 0 else 0.0,
+        },
+        "tokens": {
+            "total_tokens": tokens,
+            "total_cost_usd": cost,
         },
         "latency_ms": {
             "p50": p50,

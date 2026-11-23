@@ -21,6 +21,7 @@ from src.llm_client import LLMClient  # noqa: E402
 
 from app.agents.base import BaseAgent  # noqa: E402
 from app.agents.state import AgentState  # noqa: E402
+from app.observability.telemetry import estimate_tokens, record_agent_step_telemetry  # noqa: E402
 
 
 class DraftAgent(BaseAgent):
@@ -99,7 +100,20 @@ class DraftAgent(BaseAgent):
         state.cited_resolution_ids = cited_ids
         state.draft_history.append(reply)
 
-        state.step_timings_ms[f"draft_step_{state.revision_count}"] = round(
-            (time.perf_counter() - t0) * 1000.0, 2
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        in_tok = estimate_tokens(user_prompt)
+        out_tok = estimate_tokens(reply)
+        model_name = "offline-mock" if self.llm.offline else "gemini-1.5-flash-002"
+        record_agent_step_telemetry(
+            state=state,
+            step_name=f"draft_revision_{state.revision_count}",
+            latency_ms=elapsed_ms,
+            input_tokens=in_tok,
+            output_tokens=out_tok,
+            model_name=model_name,
+            extra_span_attributes={
+                "revision_count": state.revision_count,
+                "cited_ids_count": len(cited_ids),
+            },
         )
         return state

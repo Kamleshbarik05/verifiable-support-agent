@@ -8,6 +8,7 @@ import time
 
 from app.agents.base import BaseAgent
 from app.agents.state import AgentState, PolicyVerdict
+from app.observability.telemetry import record_agent_step_telemetry
 from app.tools.guardrail_tools import pii_check_tool, url_allowlist_check_tool
 
 
@@ -43,8 +44,15 @@ class PolicyGuard(BaseAgent):
                 details=pii_res["details"],
                 violation_tier="TIER_1_HARD_GUARDRAIL",
             )
-            state.step_timings_ms[f"policy_guard_{state.revision_count}"] = round(
-                (time.perf_counter() - t0) * 1000.0, 2
+            elapsed_ms = (time.perf_counter() - t0) * 1000.0
+            record_agent_step_telemetry(
+                state=state,
+                step_name=f"policy_guard_pass_{state.revision_count}",
+                latency_ms=elapsed_ms,
+                input_tokens=0,
+                output_tokens=0,
+                model_name="offline-mock",
+                extra_span_attributes={"policy.passed": False, "guardrail.type": "PII"},
             )
             return state
 
@@ -72,7 +80,17 @@ class PolicyGuard(BaseAgent):
                 details="Passed all deterministic safety and URL allowlist checks.",
             )
 
-        state.step_timings_ms[f"policy_guard_{state.revision_count}"] = round(
-            (time.perf_counter() - t0) * 1000.0, 2
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        record_agent_step_telemetry(
+            state=state,
+            step_name=f"policy_guard_pass_{state.revision_count}",
+            latency_ms=elapsed_ms,
+            input_tokens=0,
+            output_tokens=0,
+            model_name="offline-mock",
+            extra_span_attributes={
+                "policy.passed": state.policy_verdict.passed,
+                "guardrail.type": "URL_ALLOWLIST",
+            },
         )
         return state

@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-11-23T08:01:39.302613+00:00",
+  "git_commit": "6ca1aafe2dc1a57d13a7c371666c6b2867ff418d",
+  "sample_size": 100,
+  "latency_ms": {
+    "p50_total": 1.76,
+    "p95_total": 2.9,
+    "p50_by_step": {
+      "triage": 0.12,
+      "retrieval": 1.44,
+      "draft": 0.03,
+      "policy_guard": 0.03,
+      "critic": 0.07
+    },
+    "p95_by_step": {
+      "triage": 0.23,
+      "retrieval": 2.24,
+      "draft": 0.13,
+      "policy_guard": 0.06,
+      "critic": 0.18
+    }
+  },
+  "throughput": {
+    "mean_tokens_per_sec": 354660.64
+  },
+  "cost_usd": {
+    "mean_per_request": 5e-06,
+    "total_batch_cost": 0.000508
+  },
+  "revision_distribution": {
+    "0_revisions": {
+      "count": 97,
+      "percentage": 97.0
+    },
+    "1_revision": {
+      "count": 0,
+      "percentage": 0.0
+    },
+    "2_or_more_revisions": {
+      "count": 3,
+      "percentage": 3.0
+    }
+  }
+}

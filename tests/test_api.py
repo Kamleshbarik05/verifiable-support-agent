@@ -55,6 +55,10 @@ def test_triage_normal_query():
     assert len(data["cited_resolution_ids"]) > 0
     assert "trace_id" in data
     assert "triage" in data["step_latencies_ms"]
+    assert "step_metrics" in data
+    assert len(data["step_metrics"]) > 0
+    assert "total_cost_usd" in data
+    assert "total_tokens" in data
 
 
 def test_triage_safety_hazard_escalation():

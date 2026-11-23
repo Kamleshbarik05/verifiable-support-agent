@@ -33,6 +33,20 @@ class CriticReview(BaseModel):
     actionable_feedback: str | None = None
 
 
+class StepMetric(BaseModel):
+    """
+    Granular observability telemetry for an individual agent execution step.
+    Captures latency, token consumption, throughput, and estimated cost.
+    """
+    step_name: str
+    model_name: str = "offline-mock"
+    latency_ms: float = 0.0
+    input_tokens: int = 0
+    output_tokens: int = 0
+    tokens_per_second: float = 0.0
+    estimated_cost_usd: float = 0.0
+
+
 class AgentState(BaseModel):
     """
     Unified state payload passed through the hierarchical multi-agent orchestrator.
@@ -71,3 +85,6 @@ class AgentState(BaseModel):
     # Step Metrics for Observability
     step_timings_ms: dict[str, float] = Field(default_factory=dict)
     tokens_used: dict[str, int] = Field(default_factory=dict)
+    step_metrics: list[StepMetric] = Field(default_factory=list)
+    total_cost_usd: float = 0.0
+    total_tokens: int = 0

@@ -15,6 +15,7 @@ from app.agents.policy_guard import PolicyGuard
 from app.agents.retrieval_agent import RetrievalAgent
 from app.agents.state import AgentState
 from app.agents.triage_agent import TriageAgent
+from app.observability.tracing import get_tracer
 
 
 class OrchestratorAgent(BaseAgent):
@@ -53,85 +54,101 @@ class OrchestratorAgent(BaseAgent):
         """
         t_total_start = time.perf_counter()
 
-        # Step 1: Initial Triage & Risk Evaluation
-        state = self.triage_agent.process(state)
-        if state.should_escalate:
-            state.step_timings_ms["total_orchestrator"] = round(
-                (time.perf_counter() - t_total_start) * 1000.0, 2
-            )
-            return state
-
-        # Step 2: Dense Vector Grounding Retrieval
-        state = self.retrieval_agent.process(state)
-
-        # Grounding Quality Gate (Hallucination Prevention)
-        if not state.retrieved_cases or state.max_retrieval_similarity < self.similarity_threshold:
-            state.should_escalate = True
-            state.escalation_reason = (
-                f"Historical resolution retrieval similarity ({state.max_retrieval_similarity:.2f}) "
-                f"is below threshold ({self.similarity_threshold:.2f}). No verified historical precedent "
-                f"exists; escalating to avoid hallucination."
-            )
-            state.reason_code = "GROUNDING_NO_HISTORICAL_PRECEDENT"
-            state.escalation_tier = "TIER_2_QUALITY_GATE"
-            state.step_timings_ms["total_orchestrator"] = round(
-                (time.perf_counter() - t_total_start) * 1000.0, 2
-            )
-            return state
-
-        # Step 3: Bounded Self-Reflection Loop
-        state.max_revisions = self.max_revisions
-        state.revision_count = 0
-
-        while state.revision_count <= self.max_revisions:
-            # 3a. Grounded Drafting
-            state = self.draft_agent.process(state)
-
-            # 3b. Deterministic Policy Guardrail Verification
-            state = self.policy_guard.process(state)
-
-            # If deterministic guardrail failed (e.g. ungrounded link or forbidden claim)
-            if not state.policy_verdict.passed:
-                state.revision_count += 1
-                state.critic_feedback = (
-                    f"PolicyGuard violation: {state.policy_verdict.details}. "
-                    f"Remove unauthorized links and cite verified resolutions."
+        with get_tracer().start_span(
+            "Orchestrator.process",
+            trace_id=state.trace_id,
+            attributes={
+                "ticket.id": state.ticket_id,
+                "query.char_length": len(state.customer_query),
+            },
+        ) as root_span:
+            # Step 1: Initial Triage & Risk Evaluation
+            state = self.triage_agent.process(state)
+            if state.should_escalate:
+                state.step_timings_ms["total_orchestrator"] = round(
+                    (time.perf_counter() - t_total_start) * 1000.0, 2
                 )
+                root_span.set_attribute("final.decision", "ESCALATE")
+                root_span.set_attribute("escalation.reason", state.reason_code)
+                return state
 
-                if state.revision_count > self.max_revisions:
-                    # Bounded loop exhausted: hard escalation
-                    state.should_escalate = True
-                    state.escalation_reason = (
-                        "Deterministic policy violation persisted after maximum revision retries."
-                    )
-                    state.escalation_tier = "TIER_1_HARD_GUARDRAIL"
-                    state.reason_code = "POLICY_GUARD_REVISION_EXHAUSTED"
-                    break
-                continue
+            # Step 2: Dense Vector Grounding Retrieval
+            state = self.retrieval_agent.process(state)
 
-            # 3c. Critic Agent Evaluation Rubric
-            state = self.critic_agent.process(state)
-
-            if state.critic_verdict.passed:
-                # Draft approved by Critic
-                break
-
-            # Critic requested revisions
-            state.revision_count += 1
-            if state.revision_count > self.max_revisions:
-                # Quality threshold not met after max revisions
+            # Grounding Quality Gate (Hallucination Prevention)
+            if not state.retrieved_cases or state.max_retrieval_similarity < self.similarity_threshold:
                 state.should_escalate = True
                 state.escalation_reason = (
-                    "Draft failed QA rubric standards after maximum revision retries."
+                    f"Historical resolution retrieval similarity ({state.max_retrieval_similarity:.2f}) "
+                    f"is below threshold ({self.similarity_threshold:.2f}). No verified historical precedent "
+                    f"exists; escalating to avoid hallucination."
                 )
+                state.reason_code = "GROUNDING_NO_HISTORICAL_PRECEDENT"
                 state.escalation_tier = "TIER_2_QUALITY_GATE"
-                state.reason_code = "CRITIC_QUALITY_REVISION_EXHAUSTED"
-                break
+                state.step_timings_ms["total_orchestrator"] = round(
+                    (time.perf_counter() - t_total_start) * 1000.0, 2
+                )
+                root_span.set_attribute("final.decision", "ESCALATE")
+                root_span.set_attribute("escalation.reason", state.reason_code)
+                return state
 
-        state.step_timings_ms["total_orchestrator"] = round(
-            (time.perf_counter() - t_total_start) * 1000.0, 2
-        )
-        return state
+            # Step 3: Bounded Self-Reflection Loop
+            state.max_revisions = self.max_revisions
+            state.revision_count = 0
+
+            while state.revision_count <= self.max_revisions:
+                # 3a. Grounded Drafting
+                state = self.draft_agent.process(state)
+
+                # 3b. Deterministic Policy Guardrail Verification
+                state = self.policy_guard.process(state)
+
+                # If deterministic guardrail failed (e.g. ungrounded link or forbidden claim)
+                if not state.policy_verdict.passed:
+                    state.revision_count += 1
+                    state.critic_feedback = (
+                        f"PolicyGuard violation: {state.policy_verdict.details}. "
+                        f"Remove unauthorized links and cite verified resolutions."
+                    )
+
+                    if state.revision_count > self.max_revisions:
+                        # Bounded loop exhausted: hard escalation
+                        state.should_escalate = True
+                        state.escalation_reason = (
+                            "Deterministic policy violation persisted after maximum revision retries."
+                        )
+                        state.escalation_tier = "TIER_1_HARD_GUARDRAIL"
+                        state.reason_code = "POLICY_GUARD_REVISION_EXHAUSTED"
+                        break
+                    continue
+
+                # 3c. Critic Agent Evaluation Rubric
+                state = self.critic_agent.process(state)
+
+                if state.critic_verdict.passed:
+                    # Draft approved by Critic
+                    break
+
+                # Critic requested revisions
+                state.revision_count += 1
+                if state.revision_count > self.max_revisions:
+                    # Quality threshold not met after max revisions
+                    state.should_escalate = True
+                    state.escalation_reason = (
+                        "Draft failed QA rubric standards after maximum revision retries."
+                    )
+                    state.escalation_tier = "TIER_2_QUALITY_GATE"
+                    state.reason_code = "CRITIC_QUALITY_REVISION_EXHAUSTED"
+                    break
+
+            state.step_timings_ms["total_orchestrator"] = round(
+                (time.perf_counter() - t_total_start) * 1000.0, 2
+            )
+            root_span.set_attribute("final.decision", "ESCALATE" if state.should_escalate else "DRAFT")
+            root_span.set_attribute("revisions.total", state.revision_count)
+            root_span.set_attribute("total.tokens", state.total_tokens)
+            root_span.set_attribute("total.cost_usd", state.total_cost_usd)
+            return state
 
     def process_ticket(
         self,

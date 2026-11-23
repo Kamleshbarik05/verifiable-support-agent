@@ -8,6 +8,7 @@ import time
 
 from app.agents.base import BaseAgent
 from app.agents.state import AgentState
+from app.observability.telemetry import estimate_tokens, record_agent_step_telemetry
 from app.tools.triage_tools import classify_intent_tool, risk_gate_tool
 
 
@@ -45,5 +46,19 @@ class TriageAgent(BaseAgent):
         state.escalation_tier = risk_res.get("tier", "AUTO_HANDLED")
         state.reason_code = risk_res.get("reason_code", "AUTO_HANDLED_HIGH_CONFIDENCE")
 
-        state.step_timings_ms["triage"] = round((time.perf_counter() - t0) * 1000.0, 2)
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        in_tok = estimate_tokens(state.customer_query)
+        out_tok = 25  # intent JSON payload
+        record_agent_step_telemetry(
+            state=state,
+            step_name="triage",
+            latency_ms=elapsed_ms,
+            input_tokens=in_tok,
+            output_tokens=out_tok,
+            model_name="offline-mock",
+            extra_span_attributes={
+                "intent.confidence": state.intent_confidence,
+                "reason.code": state.reason_code,
+            },
+        )
         return state

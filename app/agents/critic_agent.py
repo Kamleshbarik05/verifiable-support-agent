@@ -21,6 +21,7 @@ from src.llm_client import LLMClient  # noqa: E402
 
 from app.agents.base import BaseAgent  # noqa: E402
 from app.agents.state import AgentState, CriticReview  # noqa: E402
+from app.observability.telemetry import estimate_tokens, record_agent_step_telemetry  # noqa: E402
 from app.tools.critic_tools import judge_score_tool  # noqa: E402
 
 
@@ -68,7 +69,22 @@ class CriticAgent(BaseAgent):
         state.critic_verdict = review
         state.critic_feedback = review.actionable_feedback if not review.passed else None
 
-        state.step_timings_ms[f"critic_step_{state.revision_count}"] = round(
-            (time.perf_counter() - t0) * 1000.0, 2
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+        in_tok = estimate_tokens(state.customer_query + " " + state.drafted_reply) + 120
+        out_tok = 35
+        model_name = "offline-mock" if self.judge.llm.offline else "gemini-1.5-flash-002"
+        record_agent_step_telemetry(
+            state=state,
+            step_name=f"critic_pass_{state.revision_count}",
+            latency_ms=elapsed_ms,
+            input_tokens=in_tok,
+            output_tokens=out_tok,
+            model_name=model_name,
+            extra_span_attributes={
+                "critic.passed": review.passed,
+                "critic.groundedness": review.groundedness,
+                "critic.actionability": review.actionability,
+                "critic.brand_tone": review.brand_tone,
+            },
         )
         return state

@@ -8,6 +8,8 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
+from app.agents.state import StepMetric
+
 
 class TriageRequest(BaseModel):
     """
@@ -53,6 +55,9 @@ class TriageResponse(BaseModel):
     revisions_needed: int
     trace_id: str
     step_latencies_ms: dict[str, float] = Field(default_factory=dict)
+    step_metrics: list[StepMetric] = Field(default_factory=list)
+    total_cost_usd: float = 0.0
+    total_tokens: int = 0
 
 
 class HealthResponse(BaseModel):
