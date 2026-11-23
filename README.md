@@ -65,28 +65,63 @@ flowchart TD
 
 ## 📊 Benchmark Audit & Verified Results
 
-All numbers below are extracted directly from machine-generated JSON benchmarks in [`eval/results/`](eval/results/) using `make report`.
+All metrics below are generated from frozen evaluation artifacts in [`eval/results/`](eval/results/) using `make report`.
 
-| Evaluation Dimension | v1 Monolithic Baseline | v2 ADK Multi-Agent | Delta (v2 - v1) | Source JSON |
+### Block 1: Golden Evaluation Set (200 Samples — Offline Deterministic Mode)
+
+| Evaluation Metric | v1 Baseline (Monolithic) | v2 Multi-Agent (Google ADK) | Delta (v2 - v1) | Evaluation Mode & Provenance |
 |---|---|---|---|---|
-| **Intent Macro-F1** | `0.8734` | `0.8734` | `+0.0000` | [`e2e_v2.json`](eval/results/e2e_v2.json) |
-| **Escalation Recall** | `87.5%` | `87.5%` | `+0.0%` | [`e2e_v2.json`](eval/results/e2e_v2.json) |
-| **Escalation FNR (Safety Liability)** | `12.5%` | `12.5%` | `+0.0%` | [`e2e_v2.json`](eval/results/e2e_v2.json) |
-| **Hallucinated URL Rate** | `0.0%` | **`0.0%`** | `+0.0%` | [`e2e_v2.json`](eval/results/e2e_v2.json) |
+| **Intent Macro-F1** | `0.8734` | `0.8734` | `+0.0000` | Offline mock (`eval/results/e2e_v2.json`) |
+| **Escalation Recall** | `87.5%` | `87.5%` | `+0.0%` | Offline mock (`eval/results/e2e_v2.json`) |
+| **Escalation Precision** | `28.0%` | `19.4%` | `-8.6%` | Offline mock (`eval/results/e2e_v2.json`) |
+| **Escalation FNR (Safety Liability)** | `12.5%` | `12.5%` | `+0.0%` | Offline mock (`eval/results/e2e_v2.json`) |
+| **Hallucinated URL Rate** | `0.0%` | **`0.0%`** | `+0.0%` | Deterministic allowlist (`eval/results/e2e_v2.json`) |
+| **Judge Pass Rate** | `100.0%` | `100.0%` | `+0.0%` | Offline mock judge, not an LLM evaluation (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Escalation)** | `0.6935` | `0.6935` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
+| **Cohen's Kappa (Safety)** | `1.0000` | `1.0000` | `0.0000` | 50-sample synthetic calibration set (`eval/results/e2e_v2.json`) |
+
+- **Escalation Trade-off:** The system enforces an asymmetric safety priority: maximizing recall (87.5%) to guarantee hazardous hardware incidents (battery swelling/smoke) are never missed, trading off precision (19.4%) since reviewing false alarms is operationally cheap compared to catastrophic liability.
+- **Escalation Baseline:** The False Negative Rate dropped from 88.0% (naive keyword baseline) to 12.5% in v1; v2 preserves this 12.5% safety rate across multi-agent handoffs.
+- **URL Safeguards:** v1 and v2 both scored 0.0% hallucinated URLs on the golden set; v2 adds a deterministic domain allowlist and citation verification firewall as an architectural guarantee.
+
+---
+
+### Block 2: Vector Retrieval A/B Benchmark (100 Samples — HNSW Cosine vs Keyword Search)
+
+| Retrieval Metric | v1 Baseline Retrieval | v2 Dense Vector (`pgvector` / HNSW) | Delta (v2 - v1) | Source JSON |
+|---|---|---|---|---|
 | **Retrieval Recall@1** | `11.0%` | **`71.0%`** | **`+60.0%`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
 | **Retrieval Recall@3** | `35.0%` | **`86.0%`** | **`+51.0%`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
+| **Retrieval Recall@5** | `50.0%` | **`88.0%`** | **`+38.0%`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
 | **Mean Reciprocal Rank (MRR)** | `0.248` | **`0.783`** | **`+0.535`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
-| **Median Inference Latency ($p50$)** | `3.16 ms` | **`1.76 ms`** | **`-1.40 ms`** | [`latency_cost.json`](eval/results/latency_cost.json) |
-| **Tail Latency ($p95$)** | `5.16 ms` | **`2.90 ms`** | **`-2.26 ms`** | [`latency_cost.json`](eval/results/latency_cost.json) |
-| **Mean Cost per Request** | `$0.000000` | **`$0.000005`** | `+$0.000005` | [`latency_cost.json`](eval/results/latency_cost.json) |
-| **1-Pass Direct Approvals** | N/A | **`97.0%`** | N/A | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **Median Search Latency ($p50$)** | `3.75 ms` | **`1.65 ms`** | **`-2.10 ms`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
+| **Tail Search Latency ($p95$)** | `6.56 ms` | **`2.79 ms`** | **`-3.77 ms`** | [`retrieval_ab.json`](eval/results/retrieval_ab.json) |
 
-### Step-by-Step Latency Breakdown ($p50$ / $p95$)
+---
+
+### Block 3: Step Latency & Cost Telemetry (100 Samples — Offline Deterministic Mode)
+
+| Telemetry Dimension | Measured Value | Evaluation Mode | Source JSON |
+|---|---|---|---|
+| **Median Total Latency ($p50$)** | `1.76 ms` | Local offline execution (CPU) | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **Tail Total Latency ($p95$)** | `2.90 ms` | Local offline execution (CPU) | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **Mean Cost per Request** | `$0.000005` | Pricing registry model | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **1-Pass Direct Approvals** | `97.0%` | Offline mock critic pass | [`latency_cost.json`](eval/results/latency_cost.json) |
+| **2+ Revisions Rate** | `3.0%` | Bounded self-reflection retry | [`latency_cost.json`](eval/results/latency_cost.json) |
+
+#### Step-by-Step Latency Breakdown ($p50$ / $p95$ in Offline Mode)
 - **Triage (Intent Classification & Risk Gates):** $0.12\text{ ms}$ / $0.23\text{ ms}$
-- **Retrieval (`pgvector` HNSW Cosine Search):** $1.44\text{ ms}$ / $2.24\text{ ms}$ *(Primary operational cost)*
+- **Retrieval (`pgvector` HNSW Cosine Search):** $1.44\text{ ms}$ / $2.24\text{ ms}$
 - **Drafting (Grounded Synthesis & Citation):** $0.03\text{ ms}$ / $0.13\text{ ms}$
 - **PolicyGuard (URL Allowlist & PII Regex):** $0.03\text{ ms}$ / $0.06\text{ ms}$
-- **Critic (Multi-Dimensional Rubric Grading):** $0.07\text{ ms}$ / $0.18\text{ ms}$
+- **Critic (QA Rubric Grading):** $0.07\text{ ms}$ / $0.18\text{ ms}$
+
+---
+
+### What These Numbers Do and Do Not Show
+
+- **What they DO show:** Verified multi-agent state delegation under bounded retry loops, deterministic Tier 1 hazard escalation, dense semantic vector retrieval recall improvements over keyword overlap, and accurate per-step token/cost accounting.
+- **What they DO NOT show:** Live cloud network latency (live LLM generation adds 300–800ms per network hop), human annotator consensus (Cohen's kappa was measured on an algorithmic 50-sample synthetic calibration dataset), or live cloud infrastructure availability (Cloud Run/SQL are target designs, not deployed).
 
 ---
 
@@ -152,6 +187,9 @@ make eval-latency-cost
 
 # Regenerate publication markdown report from raw JSON
 make report
+
+# (Optional) Run live model evaluation sample against Gemini API (requires GEMINI_API_KEY)
+make eval-live
 ```
 
 ---
@@ -168,9 +206,36 @@ Key architectural trade-offs are documented in compliance with architecture stan
 
 ## ⚖️ Known Limitations & Engineering Trade-offs
 
-1. **Multi-Agent Sequential Latency:** While sub-3ms in offline deterministic mode, live Vertex AI network hops add 300–800ms per LLM generation. Mitigated by short-circuiting safety escalations before any LLM call is made.
+1. **Multi-Agent Sequential Latency:** While sub-3ms in offline deterministic mode, live Gemini API network round-trips add 300–800ms per generative LLM call. Mitigated by short-circuiting Tier 1 safety escalations before invoking drafting agents.
 2. **Cloud SQL Cold Billing:** Cloud SQL bills hourly while provisioned. Addressed by authoring an automated teardown script (`deploy/teardown.sh`) and providing thread-safe in-memory cosine fallback for local dev.
-3. **100% Audit Sampling Volume:** Recording 100% of traces (`ALWAYS_ON`) incurs Cloud Trace ingestion costs at enterprise volume, accepted as a necessary trade-off for non-repudiable safety auditability.
+3. **100% Audit Sampling Volume:** Recording 100% of traces (`ALWAYS_ON`) incurs trace ingestion volume, accepted as a necessary trade-off for auditable safety tracking.
+
+---
+
+## 📁 Repository Layout
+
+```
+.
+├── app/
+│   ├── agents/            # ADK sub-agents (Orchestrator, Triage, Retrieval, Draft, PolicyGuard, Critic)
+│   ├── api/               # FastAPI endpoints (/triage, /health, /metrics)
+│   ├── config.py          # Centralized model and environment configuration
+│   ├── observability/     # OpenTelemetry tracing, span sanitization, and pricing tables
+│   ├── retrieval/         # Vector store, embedder interface, and schema
+│   ├── tools/             # Deterministic tool wrappers
+│   └── v1/                # Preserved v1 baseline modules and reference code
+├── deploy/                # Dockerfile and cloud provisioning runbooks (target architecture)
+├── docs/                  # Architecture specs, requirements analysis, ADRs, and plans
+│   ├── adr/               # Architectural Decision Records (0001 - 0004)
+│   ├── architecture.md    # System architecture specification
+│   ├── discovery.md       # Problem framing & domain requirements analysis
+│   └── PLAN.md            # Master development plan
+├── eval/
+│   ├── datasets/          # Golden evaluation and calibration datasets
+│   ├── results/           # Frozen machine-readable JSON evaluation outputs
+│   └── runners/           # Benchmark runners (e2e, retrieval A/B, latency/cost, live eval)
+└── tests/                 # 37 unit and integration tests (pytest)
+```
 
 ---
 

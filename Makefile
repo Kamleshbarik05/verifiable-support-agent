@@ -47,6 +47,9 @@ eval-compare:
 eval-latency-cost:
 	$(PYTHON) eval/runners/latency_cost_eval.py --sample-size 100 --output eval/results/latency_cost.json
 
+eval-live:
+	$(PYTHON) eval/runners/live_eval.py --samples 30 --delay 2.0
+
 report:
 	$(PYTHON) eval/runners/generate_report.py
 
